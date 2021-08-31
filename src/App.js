@@ -8,26 +8,28 @@ import data from "./data";
 
 function App() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 550);
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(1);
 
   const products = data.products;
 
   const updateViewport = () => {
     setDesktop(window.innerWidth > 550);
   };
+  const addedWithState = (obj, setState, state) => {
+    obj.quantity++;
+    console.log(obj.quantity);
+    setState(state + 1);
+  };
   const added = (obj) => {
     obj.quantity++;
-    setQuantity(obj.quantity);
-    console.log(`quantity state is ${quantity} quantity db is ${obj.quantity}`);
+    console.log(obj.quantity);
   };
 
-  const removed = (obj) => {
+  const removed = (obj, setState, state) => {
     if (obj.quantity > 0) {
       obj.quantity--;
-      setQuantity(obj.quantity);
-      console.log(
-        `quantity state is ${quantity} quantity db is ${obj.quantity}`
-      );
+      console.log(obj.quantity);
+      setState(state + 1);
     }
   };
 
@@ -45,11 +47,7 @@ function App() {
           <Link className="brand" to="/">
             Aleef Store
           </Link>
-          {isDesktop ? (
-            <HeaderNav products={products} quantity={quantity} />
-          ) : (
-            <FiMenu />
-          )}
+          {isDesktop ? <HeaderNav products={products} /> : <FiMenu />}
         </header>
         <main>
           <Route exact path="/">
@@ -58,8 +56,7 @@ function App() {
           <Route path="/cart">
             <ShoppingScreen
               products={products}
-              quantity={quantity}
-              added={added}
+              addedWithState={addedWithState}
               removed={removed}
             />
           </Route>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 function CartCard(props) {
-  const {product, added, removed, quantity} = props;
+  const {product, addedWithState, removed} = props;
+  const [quantity, setQuantity] = useState(product.quantity);
 
+  // const showQuantity = quantity;
   return (
     <div>
       <div className="cart-card space-evenly">
@@ -19,11 +21,17 @@ function CartCard(props) {
             <strong>Brand:</strong> {product.brand}
           </p>
           <div className="flex-row">
-            <button className="minus" onClick={() => removed(product)}>
+            <button
+              className="minus"
+              onClick={() => removed(product, setQuantity, quantity)}
+            >
               -
             </button>
-            <h3>{quantity}</h3>
-            <button className="plus" onClick={() => added(product)}>
+            <h3>{product.quantity}</h3>
+            <button
+              className="plus"
+              onClick={() => addedWithState(product, setQuantity, quantity)}
+            >
               +
             </button>
           </div>

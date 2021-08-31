@@ -3,7 +3,7 @@ import CartCard from "../components/CartCard";
 import OrderSummary from "../components/OrderSummary";
 
 function ShoppingScreen(props) {
-  const {products, added, removed, quantity} = props;
+  const {products, addedWithState, removed, quantity} = props;
 
   const renderCartedProduct = products
     .filter((product) => product.quantity !== 0)
@@ -12,23 +12,23 @@ function ShoppingScreen(props) {
         key={product._id}
         product={product}
         quantity={quantity}
-        added={added}
+        addedWithState={addedWithState}
         removed={removed}
       />
     ));
 
-  const totals = [];
+  const totalPrices = [];
   products.map((product) => {
-    const total = (i, p) => {
-      let o = i * p;
-      totals.push(o);
+    const calcTotalPrice = (price, quantity) => {
+      let el = price * quantity;
+      totalPrices.push(el);
     };
-    total(product.price, product.quantity);
+    return calcTotalPrice(product.price, product.quantity);
     // console.log(totals);
   });
-  let totalss = 0;
-  totals.forEach((i) => {
-    totalss = totalss + i;
+  let totalElements = 0;
+  totalPrices.forEach((i) => {
+    totalElements = totalElements + i;
   });
   // console.log(totalss);
   return (
@@ -37,7 +37,7 @@ function ShoppingScreen(props) {
         <h1 className="cart-title">Shopping cart</h1>
       </div>
       <div className="flex-column">{renderCartedProduct}</div>
-      <OrderSummary products={products} totalss={totalss} />
+      <OrderSummary products={products} totalElements={totalElements} />
     </div>
   );
 }
