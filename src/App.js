@@ -53,7 +53,7 @@ function App() {
         </header>
         <main>
           <Route exact path="/">
-            <HomeScreen />
+            <HomeScreen added={added} />
           </Route>
           <Route path="/cart">
             <ShoppingScreen

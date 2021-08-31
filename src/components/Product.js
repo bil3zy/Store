@@ -1,7 +1,7 @@
 import React from "react";
 
 function Product(props) {
-  const {product} = props;
+  const {product, added} = props;
   return (
     <div className="flex-column align-center card">
       <a href="/cart/">
@@ -20,7 +20,7 @@ function Product(props) {
       <button
         className="addtocart"
         onClick={() => {
-          product.quantity++;
+          added(product);
         }}
       >
         Add to cart
