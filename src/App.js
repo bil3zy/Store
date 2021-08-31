@@ -29,7 +29,7 @@ function App() {
     if (obj.quantity > 0) {
       obj.quantity--;
       console.log(obj.quantity);
-      setState(state + 1);
+      setState(state - 1);
     }
   };
 

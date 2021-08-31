@@ -4,7 +4,6 @@ function CartCard(props) {
   const {product, addedWithState, removed} = props;
   const [quantity, setQuantity] = useState(product.quantity);
 
-  // const showQuantity = quantity;
   return (
     <div>
       <div className="cart-card space-evenly">
@@ -27,7 +26,7 @@ function CartCard(props) {
             >
               -
             </button>
-            <h3>{product.quantity}</h3>
+            <h3>{quantity}</h3>
             <button
               className="plus"
               onClick={() => addedWithState(product, setQuantity, quantity)}
