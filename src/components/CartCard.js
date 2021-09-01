@@ -1,8 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 function CartCard(props) {
-  const {product, addedWithState, removed} = props;
+  const {product} = props;
   const [quantity, setQuantity] = useState(product.quantity);
+
+  const added = () => {
+    product.quantity++;
+    console.log(product.quantity);
+    setQuantity(quantity + 1);
+  };
+  const removed = () => {
+    if (product.quantity > 0) {
+      product.quantity--;
+      console.log(product.quantity);
+      setQuantity(quantity - 1);
+    }
+  };
+  console.log(`db ${product.quantity}`);
 
   return (
     <div>
@@ -20,17 +34,11 @@ function CartCard(props) {
             <strong>Brand:</strong> {product.brand}
           </p>
           <div className="flex-row">
-            <button
-              className="minus"
-              onClick={() => removed(product, setQuantity, quantity)}
-            >
+            <button className="minus" onClick={() => removed(product)}>
               -
             </button>
             <h3>{quantity}</h3>
-            <button
-              className="plus"
-              onClick={() => addedWithState(product, setQuantity, quantity)}
-            >
+            <button className="plus" onClick={() => added(product)}>
               +
             </button>
           </div>

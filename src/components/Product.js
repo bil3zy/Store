@@ -1,7 +1,11 @@
 import React from "react";
 
 function Product(props) {
-  const {product, added} = props;
+  const {product} = props;
+  const added = (obj) => {
+    obj.quantity++;
+    console.log(obj.quantity);
+  };
   return (
     <div className="flex-column align-center card">
       <a href="/cart/">

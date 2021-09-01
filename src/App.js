@@ -12,33 +12,16 @@ function App() {
 
   const products = data.products;
 
-  const updateViewport = () => {
-    setDesktop(window.innerWidth > 550);
-  };
-  const addedWithState = (obj, setState, state) => {
-    obj.quantity++;
-    console.log(obj.quantity);
-    setState(state + 1);
-  };
-  const added = (obj) => {
-    obj.quantity++;
-    console.log(obj.quantity);
-  };
+  // const updateViewport = () => {
+  //   setDesktop(window.innerWidth > 550);
+  // };
 
-  const removed = (obj, setState, state) => {
-    if (obj.quantity > 0) {
-      obj.quantity--;
-      console.log(obj.quantity);
-      setState(state - 1);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateViewport);
-    return () => {
-      window.removeEventListener("resize", updateViewport);
-    };
-  });
+  // useEffect(() => {
+  //   window.addEventListener("resize", updateViewport);
+  //   return () => {
+  //     window.removeEventListener("resize", updateViewport);
+  //   };
+  // });
 
   return (
     <BrowserRouter>
@@ -47,18 +30,14 @@ function App() {
           <Link className="brand" to="/">
             Aleef Store
           </Link>
-          {isDesktop ? <HeaderNav products={products} /> : <FiMenu />}
+          {isDesktop ? <HeaderNav /> : <FiMenu />}
         </header>
         <main>
           <Route exact path="/">
-            <HomeScreen added={added} />
+            <HomeScreen />
           </Route>
           <Route path="/cart">
-            <ShoppingScreen
-              products={products}
-              addedWithState={addedWithState}
-              removed={removed}
-            />
+            <ShoppingScreen />
           </Route>
         </main>
         <footer className="flex-row align-center">

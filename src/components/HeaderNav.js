@@ -19,11 +19,7 @@ export default function HeaderNav(props) {
           </li>
           <li>
             <Link to="/cart">
-              {props.quantity > 0 ? (
-                <HiShoppingCart />
-              ) : (
-                <HiOutlineShoppingCart />
-              )}
+              <HiShoppingCart />
             </Link>
           </li>
         </ul>
