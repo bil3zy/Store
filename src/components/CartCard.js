@@ -20,6 +20,9 @@ function CartCard(props) {
           <p className="card-brand">
             <strong>Brand:</strong> {product.brand}
           </p>
+          <p className="card-weight">
+            <strong>Weight:</strong> {product.weight}
+          </p>
           <div className="flex-row">
             <button
               className="minus"

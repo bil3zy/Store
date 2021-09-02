@@ -9,6 +9,7 @@ const data = {
       brand: "Food Elite",
       countInStock: "10",
       quantity: 0,
+      weight: "15kg",
     },
     {
       _id: "2",
@@ -19,6 +20,7 @@ const data = {
       brand: "Food Elite",
       countInStock: "10",
       quantity: 0,
+      weight: "15kg",
     },
     {
       _id: "3",
@@ -29,6 +31,7 @@ const data = {
       brand: "Food Elite",
       countInStock: "10",
       quantity: 0,
+      weight: "15kg",
     },
     {
       _id: "4",
@@ -39,6 +42,7 @@ const data = {
       brand: "Food Elite",
       countInStock: "10",
       quantity: 0,
+      weight: "15kg",
     },
     {
       _id: "5",
@@ -49,6 +53,7 @@ const data = {
       brand: "Food Elite",
       countInStock: "0",
       quantity: 0,
+      weight: "15kg",
     },
     {
       _id: "6",
@@ -59,6 +64,7 @@ const data = {
       brand: "Food Elite",
       countInStock: "10",
       quantity: 0,
+      weight: "3kg",
     },
   ],
 };

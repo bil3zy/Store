@@ -15,6 +15,7 @@ export default function HeaderNav(props) {
           <li>
             <Link to="/signin">Sign in</Link>
           </li>
+          <p>{props.changed}</p>
           <li>
             <Link to="/cart">
               <HiShoppingCart />

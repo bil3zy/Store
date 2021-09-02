@@ -3,31 +3,17 @@ import CartCard from "../components/CartCard";
 import data from "../data.js";
 import OrderSummary from "../components/OrderSummary";
 
-function ShoppingScreen() {
+function ShoppingScreen(props) {
   const [changed, setChanged] = useState(0);
-  const added = (i, setState) => {
-    i.quantity++;
-    console.log(i.quantity);
-    setState((state) => state + 1);
-    setChanged((changed) => changed + 1);
-  };
-  console.log(changed);
-  const removed = (i, setState) => {
-    if (i.quantity > 0) {
-      i.quantity--;
-      console.log(i.quantity);
-      setState((state) => state - 1);
-      setChanged((changed) => changed - 1);
-    }
-  };
+
   const renderCartedProduct = data.products
     .filter((product) => product.quantity !== 0)
     .map((product) => (
       <CartCard
         key={product._id}
         product={product}
-        added={added}
-        removed={removed}
+        added={props.addedWithState}
+        removed={props.removed}
       />
     ));
 

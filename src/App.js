@@ -7,9 +7,30 @@ import HeaderNav from "./components/HeaderNav";
 
 function App() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 550);
-
+  const [changed, setChanged] = useState(0);
+  const added = (obj) => {
+    obj.quantity++;
+    // console.log(obj.quantity);
+    setChanged((changed) => changed + 1);
+  };
+  console.log(changed);
   const updateViewport = () => {
     setDesktop(window.innerWidth > 550);
+  };
+  const addedWithState = (i, setState) => {
+    i.quantity++;
+    console.log(i.quantity);
+    setState((state) => state + 1);
+    setChanged((changed) => changed + 1);
+  };
+  console.log(changed);
+  const removed = (i, setState) => {
+    if (i.quantity > 0) {
+      i.quantity--;
+      console.log(i.quantity);
+      setState((state) => state - 1);
+      setChanged((changed) => changed - 1);
+    }
   };
 
   useEffect(() => {
@@ -26,14 +47,14 @@ function App() {
           <Link className="brand" to="/">
             Aleef Store
           </Link>
-          {isDesktop ? <HeaderNav /> : <FiMenu />}
+          {isDesktop ? <HeaderNav changed={changed} /> : <FiMenu />}
         </header>
         <main>
           <Route exact path="/">
-            <HomeScreen />
+            <HomeScreen added={added} />
           </Route>
           <Route path="/cart">
-            <ShoppingScreen />
+            <ShoppingScreen addedWithState={addedWithState} removed={removed} />
           </Route>
         </main>
         <footer className="flex-row align-center">

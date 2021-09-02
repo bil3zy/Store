@@ -2,10 +2,10 @@ import React from "react";
 
 function Product(props) {
   const {product} = props;
-  const added = (obj) => {
-    obj.quantity++;
-    console.log(obj.quantity);
-  };
+  // const added = (obj) => {
+  //   obj.quantity++;
+  //   console.log(obj.quantity);
+  // };
   return (
     <div className="flex-column align-center card">
       <a href="/cart/">
@@ -24,7 +24,7 @@ function Product(props) {
       <button
         className="addtocart"
         onClick={() => {
-          added(product);
+          props.added(product);
         }}
       >
         Add to cart

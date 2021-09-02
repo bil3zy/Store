@@ -121,6 +121,10 @@ a.brand {
   align-self: flex-start;
   font-size: 18px;
 }
+.card-weight {
+  align-self: flex-start;
+  font-size: 18px;
+}
 .card-info {
   justify-content: space-evenly;
   padding: 0 3rem 0 3rem;
@@ -147,7 +151,7 @@ a.brand {
   border-radius: 10%;
   box-shadow: none;
   border: 2px solid rgb(194, 58, 58);
-  background-color: rgb(238, 90, 90);
+  background-color: rgb(194, 58, 58);
   color: rgb(90, 23, 23);
   font-weight: 600;
 }
@@ -157,7 +161,7 @@ a.brand {
   border-radius: 10%;
   box-shadow: none;
   border: 2px solid rgb(194, 58, 58);
-  background-color: rgb(238, 90, 90);
+  background-color: rgb(194, 58, 58);
 }
 .plus {
   width: 3.5vw;
