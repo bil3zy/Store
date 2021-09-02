@@ -3,8 +3,6 @@ import {HiOutlineShoppingCart, HiShoppingCart} from "react-icons/hi";
 import {Link} from "react-router-dom";
 
 export default function HeaderNav(props) {
-  const {products} = props;
-
   return (
     <div>
       <nav className="nav-bar flex-row space-evenly align-center">

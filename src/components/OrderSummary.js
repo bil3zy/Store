@@ -1,35 +1,10 @@
-import React, {useState} from "react";
-import data from "../data";
+import React from "react";
 
 export default function OrderSummary(props) {
-  const [total, setTotal] = useState(0);
-
-  let totalPrice = 0;
-  let totalElements = [];
-  let calcTotalPrice = (price, quantity) => {
-    let el = price * quantity;
-    totalElements = [...totalElements, el];
-    console.log(totalElements, el);
-  };
-  data.products.map((product) => {
-    if (product.quantity > 0)
-      return calcTotalPrice(product.price, product.quantity);
-  });
-  console.log(totalElements);
-  console.log(totalElements.reduce((acc, val) => acc + val, 0));
-  // totalElements.forEach((el) => {
-  //   if (el > 0) {
-  //     totalPrice = totalPrice + el;
-  //     console.log(totalPrice);
-
-  //   }
-  // });
-
-  console.log(totalPrice);
   return (
     <div className="flex-column summary">
       <h2>Order Summary</h2>
-      <h3>total: {0}</h3>
+      <h3>total: {props.total}</h3>
       <h3>Payment Method</h3>
     </div>
   );
