@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import data from "../data";
 
 export default function OrderSummary(props) {
@@ -16,14 +16,15 @@ export default function OrderSummary(props) {
       return calcTotalPrice(product.price, product.quantity);
   });
   console.log(totalElements);
-  totalElements.forEach((el) => {
-    if (el > 0) {
-      totalPrice = totalPrice + el;
-      console.log(totalPrice);
-    }
-  });
-  setTotal(1);
-  console.log(total);
+  console.log(totalElements.reduce((acc, val) => acc + val, 0));
+  // totalElements.forEach((el) => {
+  //   if (el > 0) {
+  //     totalPrice = totalPrice + el;
+  //     console.log(totalPrice);
+
+  //   }
+  // });
+
   console.log(totalPrice);
   return (
     <div className="flex-column summary">

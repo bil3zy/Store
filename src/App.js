@@ -4,24 +4,20 @@ import ShoppingScreen from "./screens/ShoppingScreen";
 import {FiMenu} from "react-icons/fi";
 import {useEffect, useState} from "react";
 import HeaderNav from "./components/HeaderNav";
-import data from "./data";
 
 function App() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 550);
-  // const [quantity, setQuantity] = useState(1);
 
-  const products = data.products;
+  const updateViewport = () => {
+    setDesktop(window.innerWidth > 550);
+  };
 
-  // const updateViewport = () => {
-  //   setDesktop(window.innerWidth > 550);
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("resize", updateViewport);
-  //   return () => {
-  //     window.removeEventListener("resize", updateViewport);
-  //   };
-  // });
+  useEffect(() => {
+    window.addEventListener("resize", updateViewport);
+    return () => {
+      window.removeEventListener("resize", updateViewport);
+    };
+  });
 
   return (
     <BrowserRouter>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 function CartCard(props) {
   const {product} = props;
@@ -7,17 +7,16 @@ function CartCard(props) {
   const added = () => {
     product.quantity++;
     console.log(product.quantity);
-    setQuantity(quantity + 1);
+    setQuantity((quantity) => quantity + 1);
   };
   const removed = () => {
     if (product.quantity > 0) {
       product.quantity--;
       console.log(product.quantity);
-      setQuantity(quantity - 1);
+      setQuantity((quantity) => quantity - 1);
     }
   };
   console.log(`db ${product.quantity}`);
-
   return (
     <div>
       <div className="cart-card space-evenly">

@@ -1,11 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import CartCard from "../components/CartCard";
 import data from "../data.js";
 import OrderSummary from "../components/OrderSummary";
 
 function ShoppingScreen() {
-  const [total, setTotal] = useState(0);
-
   const renderCartedProduct = data.products
     .filter((product) => product.quantity !== 0)
     .map((product) => <CartCard key={product._id} product={product} />);
