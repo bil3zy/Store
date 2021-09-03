@@ -10,7 +10,6 @@ function App() {
   const [changed, setChanged] = useState(0);
   const added = (obj) => {
     obj.quantity++;
-    // console.log(obj.quantity);
     setChanged((changed) => changed + 1);
   };
   console.log(changed);
@@ -19,15 +18,12 @@ function App() {
   };
   const addedWithState = (i, setState) => {
     i.quantity++;
-    console.log(i.quantity);
     setState((state) => state + 1);
     setChanged((changed) => changed + 1);
   };
-  console.log(changed);
   const removed = (i, setState) => {
     if (i.quantity > 0) {
       i.quantity--;
-      console.log(i.quantity);
       setState((state) => state - 1);
       setChanged((changed) => changed - 1);
     }

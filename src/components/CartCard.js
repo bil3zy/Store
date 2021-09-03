@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 function CartCard(props) {
-  const {product} = props;
+  const {product, added, removed} = props;
   const [quantity, setQuantity] = useState(product.quantity);
 
   console.log(`db ${product.quantity}`);
@@ -15,32 +15,34 @@ function CartCard(props) {
           width="120"
           height="220"
         />
-        <div className="flex-column align-center card-info">
-          <h2 className="card-title">{product.title}</h2>
-          <p className="card-brand">
-            <strong>Brand:</strong> {product.brand}
-          </p>
-          <p className="card-weight">
-            <strong>Weight:</strong> {product.weight}
-          </p>
-          <div className="flex-row">
+        <div className="flex-column align-left">
+          <div className="card-info">
+            <h2 className="card-title">{product.title}</h2>
+            <p className="card-brand">
+              <strong>Brand:</strong> {product.brand}
+            </p>
+            <p className="card-weight">
+              <strong>Weight:</strong> {product.weight}
+            </p>
+            <p className="card-price">
+              <strong>Price:</strong> {product.price}QR
+            </p>
+          </div>
+          <div className="flex-row buttons">
             <button
               className="minus"
-              onClick={() => props.removed(product, setQuantity)}
+              onClick={() => removed(product, setQuantity)}
             >
               -
             </button>
-            <h3>{quantity}</h3>
+            <p className="quantity">{quantity}</p>
             <button
               className="plus"
-              onClick={() => props.added(product, setQuantity)}
+              onClick={() => added(product, setQuantity)}
             >
               +
             </button>
           </div>
-        </div>
-        <div className="card-price">
-          <h3>{product.price}QR</h3>
         </div>
       </div>
     </div>

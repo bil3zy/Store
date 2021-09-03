@@ -4,25 +4,23 @@ import {Link} from "react-router-dom";
 
 export default function HeaderNav(props) {
   return (
-    <div>
-      <nav className="nav-bar flex-row space-evenly align-center">
-        <ul className="flex-row align-center">
-          <li>
-            <Link id="categories" to="/categories">
-              Categories
-            </Link>
-          </li>
-          <li>
-            <Link to="/signin">Sign in</Link>
-          </li>
-          <p>{props.changed}</p>
-          <li>
-            <Link to="/cart">
-              <HiShoppingCart />
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <nav className="nav-bar flex-row space-evenly align-center">
+      <ul className="flex-row align-center">
+        <li>
+          <Link id="categories" to="/categories">
+            Categories
+          </Link>
+        </li>
+        <li>
+          <Link to="/signin">Sign in</Link>
+        </li>
+      </ul>
+      <div className="cart-icon flex-row">
+        <p className="cart-number">{props.changed}</p>
+        <Link to="/cart">
+          {props.changed > 0 ? <HiShoppingCart /> : <HiOutlineShoppingCart />}
+        </Link>
+      </div>
+    </nav>
   );
 }

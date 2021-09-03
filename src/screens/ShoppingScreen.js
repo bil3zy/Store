@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import CartCard from "../components/CartCard";
 import data from "../data.js";
 import OrderSummary from "../components/OrderSummary";
 
 function ShoppingScreen(props) {
-  const [changed, setChanged] = useState(0);
+  const {addedWithState, removed} = props;
 
   const renderCartedProduct = data.products
     .filter((product) => product.quantity !== 0)
@@ -12,8 +12,8 @@ function ShoppingScreen(props) {
       <CartCard
         key={product._id}
         product={product}
-        added={props.addedWithState}
-        removed={props.removed}
+        added={addedWithState}
+        removed={removed}
       />
     ));
 
@@ -23,7 +23,7 @@ function ShoppingScreen(props) {
         return parseInt(product.price, 10) * product.quantity;
       } else return 0;
     })
-    .reduce((acc, val) => acc + val, 0);
+    .reduce((acc, val) => acc + val, 15);
 
   return (
     <div className="flex-row space-evenly">

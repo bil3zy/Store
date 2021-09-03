@@ -82,6 +82,16 @@ a.brand {
 .nav-bar li {
   list-style-type: none;
   margin: 0 1.5rem 0 1.5rem;
+  font-size: 1.3rem;
+}
+.cart-icon {
+  margin: 0 2.5rem 0 0;
+  font-size: 1.3rem;
+}
+.cart-number {
+  color: burlywood;
+  margin: 0 0 0 1.5rem;
+  font-size: 1.3rem;
 }
 /* main */
 /* Globals */
@@ -115,22 +125,31 @@ a.brand {
   border-bottom: 2px solid #eee;
 }
 .card-title {
+  font-size: 1.5em;
   align-self: flex-start;
 }
 .card-brand {
   align-self: flex-start;
-  font-size: 18px;
+  font-size: 1.1em;
+  padding-top: 0.5rem;
 }
 .card-weight {
   align-self: flex-start;
-  font-size: 18px;
+  font-size: 1.1em;
+  padding-top: 0.5rem;
 }
 .card-info {
-  justify-content: space-evenly;
+  font-size: 1.1em;
   padding: 0 3rem 0 3rem;
+  margin: 0 0 4rem 0;
 }
 .card-price {
+  font-size: 1.1em;
   align-self: center;
+  padding-top: 0.5rem;
+}
+.buttons {
+  padding: 0 3rem 0 3rem;
 }
 /* Summary */
 .summary {
@@ -140,7 +159,7 @@ a.brand {
 /* Buttons */
 .product-remove {
   width: auto;
-  background-color: #c66;
+  background-color: rgb(238, 90, 90);
   padding: 0.1rem;
   color: #fff;
   border-radius: 3px;
@@ -150,24 +169,32 @@ a.brand {
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-radius: 10%;
   box-shadow: none;
-  border: 2px solid rgb(194, 58, 58);
-  background-color: rgb(194, 58, 58);
+  border: 2px solid rgb(238, 90, 90);
+  background-color: rgb(238, 90, 90);
   color: rgb(90, 23, 23);
   font-weight: 600;
 }
 .minus {
-  width: 3.5vw;
+  width: 25px;
+  height: 25px;
   margin: 0 4px 0 4px;
   border-radius: 10%;
   box-shadow: none;
-  border: 2px solid rgb(194, 58, 58);
-  background-color: rgb(194, 58, 58);
+  border: 2px solid rgb(238, 90, 90);
+  background-color: rgb(238, 90, 90);
 }
 .plus {
-  width: 3.5vw;
+  width: 25px;
+  height: 25px;
   margin: 0 4px 0 4px;
   border-radius: 10%;
   box-shadow: none;
-  border: 2px solid rgb(194, 58, 58);
+  border: 2px solid rgb(238, 90, 90);
   background-color: rgb(238, 90, 90);
+}
+.quantity {
+  font-size: 22px;
+}
+.summary {
+  font-size: 110%;
 }

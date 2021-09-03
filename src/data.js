@@ -2,8 +2,8 @@ const data = {
   products: [
     {
       _id: "1",
-      title: "Cat chicken food",
-      category: "Pet food",
+      title: "Cat Chicken Food",
+      category: "pet food",
       image: "/images/p1.png",
       price: "110",
       brand: "Food Elite",
@@ -13,8 +13,8 @@ const data = {
     },
     {
       _id: "2",
-      title: "Cat salmon food",
-      category: "Pet food",
+      title: "Cat Salmon Food",
+      category: "pet food",
       image: "/images/p2.png",
       price: "110",
       brand: "Food Elite",
@@ -24,8 +24,8 @@ const data = {
     },
     {
       _id: "3",
-      title: "Dog chicken food",
-      category: "Pet food",
+      title: "Dog Chicken Food",
+      category: "pet food",
       image: "/images/p3.png",
       price: "110",
       brand: "Food Elite",
@@ -35,8 +35,8 @@ const data = {
     },
     {
       _id: "4",
-      title: "Dog salmon food",
-      category: "Pet food",
+      title: "Dog Salmon Food",
+      category: "pet food",
       image: "/images/p4.png",
       price: "110",
       brand: "Food Elite",
@@ -46,8 +46,8 @@ const data = {
     },
     {
       _id: "5",
-      title: "Dog beef meal",
-      category: "Pet food",
+      title: "Dog Beef Meal",
+      category: "pet food",
       image: "/images/p5.png",
       price: "110",
       brand: "Food Elite",
@@ -57,8 +57,8 @@ const data = {
     },
     {
       _id: "6",
-      title: "Puppy food",
-      category: "Pet food",
+      title: "Puppy Food",
+      category: "pet food",
       image: "/images/p6.png",
       price: "45",
       brand: "Food Elite",
