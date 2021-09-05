@@ -16,8 +16,8 @@ export default function Checkout() {
   };
 
   return (
-    <div className="flex-row ">
-      <div className="flex-column align-center">
+    <div className="flex-row space-evenly ">
+      <div className="flex-column checkout-form align-center">
         <h2 className="flex-column title align-center">Checkout</h2>
         <form
           className="flex-column checkout-form align-center"
@@ -66,12 +66,10 @@ export default function Checkout() {
             placeholder="Building, Apartment"
             required
           />
-          <button>Submit</button>
+          <button className="checkout-submit">Submit</button>
         </form>
       </div>
-      <div>
-        <OrderSummary />
-      </div>
+      <OrderSummary />
     </div>
   );
 }
