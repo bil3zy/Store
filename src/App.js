@@ -4,6 +4,7 @@ import ShoppingScreen from "./screens/ShoppingScreen";
 import {FiMenu} from "react-icons/fi";
 import {useEffect, useState} from "react";
 import HeaderNav from "./components/HeaderNav";
+import Checkout from "./screens/Checkout";
 
 function App() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 550);
@@ -50,7 +51,14 @@ function App() {
             <HomeScreen added={added} />
           </Route>
           <Route path="/cart">
-            <ShoppingScreen addedWithState={addedWithState} removed={removed} />
+            <ShoppingScreen
+              addedWithState={addedWithState}
+              removed={removed}
+              changed={changed}
+            />
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
           </Route>
         </main>
         <footer className="flex-row align-center">

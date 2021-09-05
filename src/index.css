@@ -98,9 +98,23 @@ a.brand {
 .medium {
   width: 120px;
 }
+.title {
+  border-bottom: 2px solid #eee;
+  width: 70%;
+}
 /* Cart */
 .card {
   padding: 2rem 2rem 2rem 1rem;
+}
+.app-nav-bar {
+  display: flex;
+  margin: 5px 0 0 5px;
+}
+.nav-bar-margins {
+  padding: 0 20px 0 20px;
+}
+.cart-empty {
+  margin: 20px;
 }
 /* Cart Card */
 .cart {
@@ -155,6 +169,20 @@ a.brand {
 .summary {
   padding: 1rem;
   border-left: 2px solid #eee;
+}
+/* Checkout */
+.checkout-form {
+  margin: 1rem 0 1rem 0;
+  width: 30rem;
+}
+.checkout-form > input {
+  width: 15rem;
+  height: 22px;
+  margin: 0.5rem 0 0.5rem 0;
+  border-radius: 10%;
+  border: 2px solid #eee;
+  padding: 5px;
+  font-size: 16px;
 }
 /* Buttons */
 .product-remove {

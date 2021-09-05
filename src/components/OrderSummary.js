@@ -1,4 +1,5 @@
 import React from "react";
+import {Link, useLocation} from "react-router-dom";
 
 export default function OrderSummary(props) {
   const {total} = props;
@@ -9,8 +10,15 @@ export default function OrderSummary(props) {
         <strong>Delivery Fee:</strong> 15 QR
       </p>
       <p>
-        <strong>Total:</strong> {total} QR
+        <strong>Total:</strong> {total} {total > 0 ? "QR" : ""}
       </p>
+      {useLocation().pathname !== "/checkout" ? (
+        <Link to="/checkout">
+          <button>Proceed to Checkout</button>
+        </Link>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
