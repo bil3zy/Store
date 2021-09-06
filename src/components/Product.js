@@ -12,10 +12,8 @@ function Product(props) {
         width="120"
         height="220"
       />
-
-      <h2>{product.title}</h2>
-
-      <h3>{product.price}QR</h3>
+      <h2 className="product-title">{product.title}</h2>
+      <h3 className="product-price">{product.price}QR</h3>
       <button
         className="addtocart"
         onClick={() => {
