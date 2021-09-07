@@ -1,6 +1,6 @@
 import React from "react";
 
-function Product(props) {
+export default function CatsProducts(props) {
   const {product, added} = props;
 
   const truncateString = (string) => {
@@ -15,7 +15,7 @@ function Product(props) {
       <img
         className="medium"
         src={product.image}
-        alt="Cat Salmon Food"
+        alt={product.title}
         width="120"
         height="220"
       />
@@ -32,5 +32,3 @@ function Product(props) {
     </div>
   );
 }
-
-export default Product;

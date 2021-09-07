@@ -4,7 +4,8 @@ import ShoppingScreen from "./screens/ShoppingScreen";
 import {FiMenu} from "react-icons/fi";
 import {useEffect, useState} from "react";
 import HeaderNav from "./components/HeaderNav";
-import Checkout from "./screens/Checkout";
+import CheckoutScreen from "./screens/CheckoutScreen";
+import CatsScreen from "./screens/CatsScreen";
 
 function App() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 550);
@@ -57,8 +58,11 @@ function App() {
               changed={changed}
             />
           </Route>
-          <Route path="/checkout">
-            <Checkout />
+          <Route path="/CheckoutScreen">
+            <CheckoutScreen />
+          </Route>
+          <Route path="/cats">
+            <CatsScreen added={added} />
           </Route>
         </main>
         <footer className="flex-row align-center">

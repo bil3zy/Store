@@ -20,8 +20,8 @@ export default function OrderSummary(props) {
       <p>
         <strong>Total:</strong> {total} {total > 0 ? "QR" : ""}
       </p>
-      {useLocation().pathname !== "/checkout" ? (
-        <Link to="/checkout">
+      {useLocation().pathname !== "/CheckoutScreen" ? (
+        <Link to="/CheckoutScreen">
           <button className="summary-proceed">Proceed to Checkout</button>
         </Link>
       ) : (

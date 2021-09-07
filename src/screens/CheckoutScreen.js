@@ -4,7 +4,7 @@ import OrderSummary from "../components/OrderSummary";
 import useInput from "../hooks/useInput";
 import {MdNavigateNext} from "react-icons/md";
 
-export default function Checkout(props) {
+export default function CheckoutScreen(props) {
   const [email, setEmail] = useInput("");
   const [phone, setPhone] = useInput("");
   const [firstName, setFirstName] = useInput("");
@@ -27,7 +27,7 @@ export default function Checkout(props) {
         <div className="nav-bar-margins">
           <MdNavigateNext />
         </div>
-        <Link to="/checkout">Checkout</Link>
+        <Link to="/CheckoutScreen">CheckoutScreen</Link>
       </div>
       <div className="flex-row space-evenly ">
         <div className="flex-column checkout-form align-center">

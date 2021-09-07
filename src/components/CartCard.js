@@ -4,6 +4,13 @@ function CartCard(props) {
   const {product, added, removed} = props;
   const [quantity, setQuantity] = useState(product.quantity);
 
+  const truncateString = (string) => {
+    if (string.length <= 50) {
+      return string;
+    }
+    return string.slice(0, 50) + "...";
+  };
+
   console.log(`db ${product.quantity}`);
   return (
     <div>
@@ -17,7 +24,7 @@ function CartCard(props) {
         />
         <div className="flex-column align-left">
           <div className="card-info">
-            <h2 className="card-title">{product.title}</h2>
+            <h2 className="card-title">{truncateString(product.title)}</h2>
             <p className="card-brand">
               <strong>Brand:</strong> {product.brand}
             </p>

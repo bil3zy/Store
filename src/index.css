@@ -73,6 +73,9 @@ header a {
   color: rgb(104, 62, 8);
   text-decoration-line: none;
 }
+.brand {
+  margin: 0 0 0 20px;
+}
 a.brand {
   color: rgb(104, 62, 8);
   font-size: 3rem;
@@ -82,17 +85,17 @@ a.brand {
 }
 .nav-bar li {
   list-style-type: none;
-  margin: 0 1.5rem 0 1.5rem;
-  font-size: 1.3rem;
+  margin: 0 20px 0 20px;
+  font-size: 20px;
 }
 .cart-icon {
   margin: 0 2.5rem 0 0;
-  font-size: 1.3rem;
+  font-size: 20px;
 }
 .cart-number {
   color: rgb(104, 62, 8);
-  margin: 0 0 0 1.5rem;
-  font-size: 1.3rem;
+  margin: 0 0 0 20px;
+  font-size: 20px;
 }
 /* main */
 /* Globals */
@@ -132,6 +135,7 @@ a.brand {
   padding: 10px 0px 10px 0px;
   width: 90%;
   border-bottom: 2px solid #eee;
+  color: rgb(165, 108, 33);
   justify-content: center;
 }
 .card h2 {
@@ -215,6 +219,10 @@ a.brand {
   transition: all 0.3s;
   cursor: pointer;
 }
+.addtocart:active {
+  background-color: rgb(168, 90, 90);
+  transition: all 0.1s;
+}
 .minus {
   width: 25px;
   height: 25px;
@@ -252,11 +260,7 @@ a.brand {
 .quantity {
   font-size: 22px;
 }
-.quantity:hover {
-  background-color: rgb(255, 55, 55);
-  transition: all 0.3s;
-  cursor: pointer;
-}
+
 .summary {
   font-size: 110%;
 }
@@ -295,4 +299,13 @@ a.brand {
   background-color: rgb(255, 55, 55);
   transition: all 0.3s;
   cursor: pointer;
+}
+/* Cats Screen */
+.subcategory {
+  justify-content: center;
+  margin: 10px 0 0 0;
+  padding: 0 0 10px 0;
+  color: rgb(165, 108, 33);
+  border-bottom: 2px solid #eee;
+  width: 65%;
 }

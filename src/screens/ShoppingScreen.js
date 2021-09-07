@@ -18,7 +18,6 @@ function ShoppingScreen(props) {
         removed={removed}
       />
     ));
-
   return (
     <div>
       <div className="app-nav-bar">
