@@ -4,7 +4,7 @@ function Product(props) {
   const {product, added} = props;
 
   const truncateString = (string) => {
-    if (string.length <= 50) {
+    if (string.length <= 60) {
       return string;
     }
     return string.slice(0, 50) + "...";
@@ -20,15 +20,18 @@ function Product(props) {
         height="220"
       />
       <h2 className="product-title">{truncateString(product.title)}</h2>
-      <h3 className="product-price">{product.price}QR</h3>
-      <button
-        className="addtocart"
-        onClick={() => {
-          added(product);
-        }}
-      >
-        Add to cart
-      </button>
+      <div>
+        <h3 className="product-price">{product.price}QR</h3>
+
+        <button
+          className="addtocart"
+          onClick={() => {
+            added(product);
+          }}
+        >
+          Add to cart
+        </button>
+      </div>
     </div>
   );
 }

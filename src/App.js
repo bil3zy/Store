@@ -65,9 +65,9 @@ function App() {
             <CatsScreen added={added} />
           </Route>
         </main>
-        <footer className="flex-row align-center">
+        {/* <footer className="flex-column align-center">
           <small>All rights reserved</small>
-        </footer>
+        </footer> */}
       </div>
     </BrowserRouter>
   );

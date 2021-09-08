@@ -30,7 +30,8 @@ a {
 }
 header {
   grid-area: header;
-  background-color: rgb(238, 90, 90);
+  background-color: rgb(255, 255, 255);
+  border-bottom: 4px solid rgb(145, 94, 27);
 }
 main {
   grid-area: main;
@@ -62,7 +63,7 @@ footer {
 
 .grid-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 .fixed {
   position: fixed;
@@ -80,6 +81,14 @@ a.brand {
   color: rgb(104, 62, 8);
   font-size: 3rem;
 }
+@media (max-width: 450px) {
+  a.brand {
+    font-size: 2.5rem;
+  }
+}
+.menu {
+  padding: 0 50px 0 0;
+}
 .nav-bar ul {
   display: flex;
 }
@@ -96,6 +105,10 @@ a.brand {
   color: rgb(104, 62, 8);
   margin: 0 0 0 20px;
   font-size: 20px;
+}
+/* Footer */
+footer {
+  justify-content: center;
 }
 /* main */
 /* Globals */
@@ -115,7 +128,11 @@ a.brand {
 }
 /* Cart */
 .card {
-  padding: 2rem 2rem 2rem 1rem;
+  margin: 0 2rem 0 1rem;
+  padding: 2rem 0 2rem 0;
+  height: 375px;
+  justify-content: space-between;
+  border-bottom: 2px solid #eee;
 }
 .app-nav-bar {
   display: flex;
@@ -213,6 +230,7 @@ a.brand {
   color: rgb(90, 23, 23);
   font-size: 18px;
   font-weight: bold;
+  width: 120px;
 }
 .addtocart:hover {
   background-color: rgb(255, 55, 55);

@@ -22,7 +22,7 @@ export default function Cats(props) {
       <div className="flex-column align-center">
         <h2 className="subcategory flex-row">Cat Food</h2>
       </div>
-      <div className="grid-row">
+      <div className="grid-row cats-products">
         {products
           .filter(filterByCats)
           .filter(filterByFood)

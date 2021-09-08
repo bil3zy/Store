@@ -3,7 +3,7 @@ import {FiMenu} from "react-icons/fi";
 
 export default function HeaderDrawer() {
   return (
-    <div>
+    <div className="menu">
       <FiMenu />
     </div>
   );
