@@ -32,7 +32,11 @@ function CartCard(props) {
               <strong>Weight:</strong> {product.weight}
             </p>
             <p className="card-price">
-              <strong>Price:</strong> {product.price}QR
+              <strong>Unit price:</strong>
+              {product.price}QR
+            </p>
+            <p className="card-price">
+              <strong>Total:</strong> {product.price * product.quantity}QR
             </p>
           </div>
           <div className="flex-row buttons">

@@ -23,7 +23,7 @@ a {
     "main"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: 3.55rem 1fr 3rem;
+  grid-template-rows: 6.2rem 1fr 3rem;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -31,7 +31,6 @@ a {
 header {
   grid-area: header;
   background-color: rgb(255, 255, 255);
-  border-bottom: 4px solid rgb(145, 94, 27);
 }
 main {
   grid-area: main;
@@ -60,10 +59,15 @@ footer {
 .flex-row.space-evenly {
   justify-content: space-evenly;
 }
-
 .grid-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+@media screen and (max-width: 450px) {
+  .grid-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
 }
 .fixed {
   position: fixed;
@@ -83,7 +87,7 @@ a.brand {
 }
 @media (max-width: 450px) {
   a.brand {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
   }
 }
 .menu {
@@ -94,16 +98,16 @@ a.brand {
 }
 .nav-bar li {
   list-style-type: none;
-  margin: 0 20px 0 20px;
+  margin: 0 1.5vw 0 1.5vw;
   font-size: 20px;
 }
 .cart-icon {
-  margin: 0 2.5rem 0 0;
+  margin: 0 2.5vw 0 0;
   font-size: 20px;
 }
 .cart-number {
   color: rgb(104, 62, 8);
-  margin: 0 0 0 20px;
+  margin: 0 0 0 0.5rem;
   font-size: 20px;
 }
 /* Footer */
@@ -115,9 +119,40 @@ footer {
 .medium {
   width: 120px;
 }
+.large {
+  width: 350px;
+}
 .title {
   border-bottom: 2px solid #eee;
   width: 100%;
+}
+/* Main Nav-bar */
+.categories {
+  color: rgb(104, 62, 8);
+  width: 100%;
+  border-top: 3px solid rgb(173, 112, 31);
+  border-bottom: 3px solid rgb(173, 112, 31);
+  border-radius: 2px;
+}
+.categories > h3 {
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+/* Product Details Screen */
+.details-card {
+  margin: 4rem 2rem 0 5rem;
+  padding: 0 0 2rem 0;
+}
+.details-card-info {
+  margin: 1rem 0 1rem 2rem;
+}
+.details-card-info-title-description {
+  margin-bottom: 0.5rem;
+}
+.details-card-info-title-description > h2 {
+  border-bottom: 2px solid #eee;
+}
+.details-card-info-title-description > p {
+  color: rgb(165, 162, 162);
 }
 /* Product HomeScreen */
 .product-title {
@@ -128,8 +163,8 @@ footer {
 }
 /* Cart */
 .card {
-  margin: 0 2rem 0 1rem;
-  padding: 2rem 0 2rem 0;
+  margin: 4rem 2rem 0 1rem;
+  padding: 0 0 2rem 0;
   height: 375px;
   justify-content: space-between;
   border-bottom: 2px solid #eee;

@@ -5,7 +5,7 @@ import OrderSummary from "../components/OrderSummary";
 import {Link} from "react-router-dom";
 import {MdNavigateNext} from "react-icons/md";
 
-function ShoppingScreen(props) {
+function CartScreen(props) {
   const {addedWithState, removed, changed} = props;
 
   const renderCartedProduct = data.products
@@ -44,4 +44,4 @@ function ShoppingScreen(props) {
   );
 }
 
-export default ShoppingScreen;
+export default CartScreen;

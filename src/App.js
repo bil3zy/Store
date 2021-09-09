@@ -1,11 +1,12 @@
 import {BrowserRouter, Link, Route} from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import ShoppingScreen from "./screens/ShoppingScreen";
+import CartScreen from "./screens/CartScreen";
 import {FiMenu} from "react-icons/fi";
 import {useEffect, useState} from "react";
 import HeaderNav from "./components/HeaderNav";
 import CheckoutScreen from "./screens/CheckoutScreen";
 import CatsScreen from "./screens/CatsScreen";
+import ProductDetailsScreen from "./screens/ProductDetailsScreen";
 
 function App() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 550);
@@ -14,7 +15,6 @@ function App() {
     obj.quantity++;
     setChanged((changed) => changed + 1);
   };
-  console.log(changed);
   const updateViewport = () => {
     setDesktop(window.innerWidth > 550);
   };
@@ -24,7 +24,7 @@ function App() {
     setChanged((changed) => changed + 1);
   };
   const removed = (i, setState) => {
-    if (i.quantity > 0) {
+    if (i.quantity > 1) {
       i.quantity--;
       setState((state) => state - 1);
       setChanged((changed) => changed - 1);
@@ -42,17 +42,25 @@ function App() {
     <BrowserRouter>
       <div className="grid-container">
         <header className="flex-row align-center space-between fixed">
-          <Link className="brand" to="/">
-            Aleef Store
-          </Link>
-          {isDesktop ? <HeaderNav changed={changed} /> : <FiMenu />}
+          <div>
+            <Link className="brand" to="/">
+              Aleef Store
+            </Link>
+          </div>
+
+          {/* {isDesktop ? <HeaderNav changed={changed} /> : <FiMenu />} */}
+          <HeaderNav changed={changed} />
+          <div className="categories flex-row align-center space-evenly">
+            <h3>Cats</h3>
+            <h3>Dogs</h3>
+          </div>
         </header>
         <main>
           <Route exact path="/">
             <HomeScreen added={added} />
           </Route>
           <Route path="/cart">
-            <ShoppingScreen
+            <CartScreen
               addedWithState={addedWithState}
               removed={removed}
               changed={changed}
@@ -64,10 +72,14 @@ function App() {
           <Route path="/cats">
             <CatsScreen added={added} />
           </Route>
+          <Route
+            path="/product-details/:id"
+            component={ProductDetailsScreen}
+          ></Route>
         </main>
-        {/* <footer className="flex-column align-center">
+        <footer className="flex-column align-center">
           <small>All rights reserved</small>
-        </footer> */}
+        </footer>
       </div>
     </BrowserRouter>
   );
