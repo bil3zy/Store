@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import data from "../data";
+import {GrFormNext, GrFormPrevious} from "react-icons/gr";
 
 export default function SlideImages({slides}) {
   const [current, setCurrent] = useState(0);
@@ -8,22 +8,25 @@ export default function SlideImages({slides}) {
     setCurrent(current === slides.length - 1 ? 0 : current + 1);
 
   const prevSlide = () => {
-    setCurrent(current === 0 ? slides.length - 1 : current + 1);
+    setCurrent(current === 0 ? slides.length - 1 : current - 1);
   };
 
   return (
-    <div>
+    <div className="slider">
       {slides.map((slide, index) => {
         return (
           <div key={index}>
             {index === current && (
-              <img src={slide.image} alt="cat walking" width="400px" />
+              <img src={slide.image} alt="cat walking" width="100%" />
             )}
           </div>
         );
       })}
-      <button onClick={() => nextSlide()}>next</button>
-      <button onClick={() => prevSlide()}>prev</button>
+      <GrFormNext className="next-slider-button" onClick={() => nextSlide()} />
+      <GrFormPrevious
+        className="prev-slider-button"
+        onClick={() => prevSlide()}
+      />
     </div>
   );
 }
