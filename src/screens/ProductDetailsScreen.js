@@ -2,9 +2,10 @@ import React from "react";
 import data from "../data";
 
 export default function ProductDetailsScreen(props) {
-  const product = data.products.find((x) => x._id === props.match.params.id);
-  console.log(product);
-  console.log(props.match.params);
+  const product = data.products.find(
+    (product) => product._id === props.match.params.id
+  );
+
   return (
     <div className="details-card flex-row">
       <img
@@ -28,14 +29,25 @@ export default function ProductDetailsScreen(props) {
         <p className="product-price">
           <strong>Price:</strong> {product.price}QR
         </p>
-        {/* <button
-        className="addtocart"
-        onClick={() => {
-          added(product);
-        }}
-      >
-        Add to cart
-      </button> */}
+        <div className="details-card-buttons flex-row">
+          <button
+            className="minus"
+            onClick={() => {
+              props.removedWithoutState(product);
+            }}
+          >
+            -
+          </button>
+          {props.changed}
+          <button
+            className="plus"
+            onClick={() => {
+              props.added(product);
+            }}
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );

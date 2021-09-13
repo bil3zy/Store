@@ -7,11 +7,6 @@ export default function HeaderNav(props) {
     <nav className="nav-bar flex-row space-evenly align-center">
       <ul className="flex-row align-center">
         <li>
-          <Link id="categories" to="/cats">
-            Cats
-          </Link>
-        </li>
-        <li>
           <Link to="/signin">Sign in</Link>
         </li>
       </ul>

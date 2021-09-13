@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-export default function CatsProducts(props) {
+export default function TopSellingProducts(props) {
   const {product, added} = props;
 
   const truncateString = (string) => {

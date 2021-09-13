@@ -1,7 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {HiOutlineShoppingCart} from "react-icons/hi";
 
-export default function CatsProducts(props) {
+export default function OnOfferProducts(props) {
   const {product, added} = props;
 
   const truncateString = (string) => {
@@ -21,6 +22,7 @@ export default function CatsProducts(props) {
           width="120"
           height="220"
         />
+        <div className="offer-icon">20%</div>
       </Link>
       <h2 className="product-title">{truncateString(product.title)}</h2>
       <h3 className="product-price">{product.price}QR</h3>

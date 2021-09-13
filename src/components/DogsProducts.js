@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-export default function CatsProducts(props) {
+export default function DogsProducts(props) {
   const {product, added} = props;
 
   const truncateString = (string) => {
@@ -23,6 +23,7 @@ export default function CatsProducts(props) {
         />
       </Link>
       <h2 className="product-title">{truncateString(product.title)}</h2>
+
       <h3 className="product-price">{product.price}QR</h3>
       <button
         className="addtocart"
