@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 function CartCard(props) {
-  const {product, added, removed} = props;
+  const {product, added, removed, removeFromCart} = props; //from CartScreen.js
   const [quantity, setQuantity] = useState(product.quantity);
 
   const truncateString = (string) => {
@@ -11,7 +11,6 @@ function CartCard(props) {
     return string.slice(0, 50) + "...";
   };
 
-  console.log(`db ${product.quantity}`);
   return (
     <div>
       <div className="cart-card space-evenly">
@@ -53,6 +52,12 @@ function CartCard(props) {
             >
               +
             </button>
+            <p
+              className="remove-product-tag"
+              onClick={() => removeFromCart(product, setQuantity, quantity)}
+            >
+              Remove Product
+            </p>
           </div>
         </div>
       </div>

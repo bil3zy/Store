@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {MdNavigateNext} from "react-icons/md";
 
 function CartScreen(props) {
-  const {addedWithState, removed, changed} = props;
+  const {addedWithState, removed, changed, removeFromCart} = props; //from App.js
 
   const renderCartedProduct = data.products
     .filter((product) => product.quantity !== 0)
@@ -16,6 +16,7 @@ function CartScreen(props) {
         product={product}
         added={addedWithState}
         removed={removed}
+        removeFromCart={removeFromCart}
       />
     ));
   return (

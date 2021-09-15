@@ -14,7 +14,7 @@ export default function OnOfferProducts(props) {
 
   return (
     <div>
-      <div className="flex-column align-center card">
+      <div className="flex-column align-center on-offer-card">
         <Link to={`/product-details/${product._id}`}>
           <img
             className="medium"
@@ -24,8 +24,11 @@ export default function OnOfferProducts(props) {
             height="220"
           />
         </Link>
-        <h2 className="product-title">{truncateString(product.title)}</h2>
-        <h3 className="product-price">{product.price}QR</h3>
+        <h2 className="on-offer-product-title">
+          {truncateString(product.title)}
+        </h2>
+        <h3 className="product-price-line-through">{product.price} QR</h3>
+        <h3 className="product-price">{product.price} QR</h3>
         <button
           className="addtocart"
           onClick={() => {

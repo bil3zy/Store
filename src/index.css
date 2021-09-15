@@ -116,7 +116,7 @@ a.brand {
   font-size: 20px;
 }
 .cart-number {
-  color: rgb(104, 62, 8);
+  color: rgb(104, 8, 8);
   margin: 0 0 0 0.5rem;
   font-size: 20px;
 }
@@ -178,9 +178,10 @@ footer {
 .product-price {
   margin: 0 0 5px 0;
 }
-.slider {
-  width: 100%;
-  height: 100%;
+.product-price-line-through {
+  margin: 0 0 5px 0;
+  text-decoration: line-through red solid;
+  color: red;
 }
 /* Cart */
 .card {
@@ -277,19 +278,20 @@ footer {
   font-size: 16px;
 }
 /* Buttons */
+.slider-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  bottom: 11rem;
+}
 .next-slider-button {
   width: 40px;
   height: 40px;
-  position: relative;
-  left: 96%;
-  bottom: 50%;
 }
 .prev-slider-button {
   width: 40px;
   height: 40px;
-  position: relative;
-  right: 1%;
-  bottom: 50%;
 }
 .addtocart {
   width: 60%;
@@ -353,6 +355,14 @@ footer {
 .plus:active {
   background-color: rgb(168, 90, 90);
   transition: all 0.1s;
+}
+.remove-product-tag {
+  align-self: center;
+  color: rgb(238, 27, 27);
+  margin: 0 0 0 2rem;
+}
+.remove-product-tag:hover {
+  cursor: pointer;
 }
 .quantity {
   font-size: 22px;
@@ -418,6 +428,71 @@ footer {
   border-radius: 10px;
   justify-content: center;
   padding: 5px;
-  z-index: 1;
+  z-index: 0;
   margin: 0 0 0 0;
+}
+.on-offer-card {
+  margin: 0 2rem 0 1rem;
+  padding: 2rem 0 2rem 0;
+  height: 410px;
+  justify-content: space-between;
+  border-bottom: 2px solid #eee;
+}
+.on-offer-product-title {
+  display: flex;
+  margin: 5px 0 5px 0;
+  height: 80px;
+  align-items: center;
+}
+/* SlideImages */
+.slide {
+  transition: opacity ease-in 1s;
+  opacity: 0;
+}
+.slide-active {
+  transition: opacity ease-in 1s;
+  opacity: 1;
+}
+.translated-picture {
+  animation: slide 2s linear 1 normal forwards;
+  position: absolute;
+  bottom: 42%;
+  right: 100%;
+}
+/* @keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  10% {
+    transform: translateX(10%);
+  }
+  20% {
+    transform: translateX(20%);
+  }
+  30% {
+    transform: translateX(30%);
+  }
+  40% {
+    transform: translateX(40%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  60% {
+    transform: translateX(60%);
+  }
+  70% {
+    transform: translateX(70%);
+  }
+  80% {
+    transform: translateX(80%);
+  }
+  90% {
+    transform: translateX(90%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+} */
+.slider-image-no-transition {
 }

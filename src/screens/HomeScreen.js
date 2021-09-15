@@ -23,7 +23,7 @@ function HomeScreen(props) {
           <Product key={product._id} product={product} added={added} />
         ))}
       </section> */}
-      <SlideImages slides={data.slideImages} />
+      <SlideImages />
       <div className="flex-column align-center asd sticky">
         <h2 className="subcategory flex-row">Offers</h2>
       </div>

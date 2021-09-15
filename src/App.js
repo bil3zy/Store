@@ -38,6 +38,16 @@ function App() {
     }
   };
 
+  const removeFromCart = (i, setState, state) => {
+    setState(state - i.quantity);
+    setChanged((changed) => changed - state);
+    console.log(i.quantity);
+    if (changed - state === 0) {
+      setChanged(0);
+    }
+    i.quantity = 0;
+  };
+
   useEffect(() => {
     window.addEventListener("resize", updateViewport);
     return () => {
@@ -78,6 +88,7 @@ function App() {
               addedWithState={addedWithState}
               removed={removed}
               changed={changed}
+              removeFromCart={removeFromCart}
             />
           </Route>
           <Route path="/CheckoutScreen">

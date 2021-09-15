@@ -337,13 +337,13 @@ const data = {
   ],
   slideImages: [
     {
-      image: "/images/stock-image-1.jpg",
+      image: "/images/stock-image.jpg",
     },
     {
       image: "/images/stock-image-2.jpg",
     },
     {
-      image: "/images/stock-image.jpg",
+      image: "/images/stock-image-1.jpg",
     },
   ],
 };
