@@ -58,25 +58,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <header className="flex-row align-center space-between fixed">
-          <div>
-            <Link className="brand" to="/">
-              Aleef Store
-            </Link>
-          </div>
-
+        <header className="flex-row align-center space-between">
           {/* {isDesktop ? <HeaderNav changed={changed} /> : <FiMenu />} */}
           <HeaderNav changed={changed} />
-          <div className="categories flex-row align-center space-evenly">
-            <h3>Home</h3>
-            <Link id="categories" to="/cats">
-              <h3>Cats</h3>
-            </Link>
-            <Link id="categories" to="/dogs">
-              <h3>Dogs</h3>
-            </Link>
-            <h3>Contact Us</h3>
-          </div>
         </header>
         <main>
           <ScrollToTop />

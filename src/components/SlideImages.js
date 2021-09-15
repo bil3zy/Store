@@ -16,7 +16,7 @@ export default function SlideImages() {
 
   setTimeout(() => {
     nextSlide();
-  }, 4000);
+  }, 10000);
 
   return (
     <div className="slider">

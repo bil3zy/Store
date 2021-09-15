@@ -345,6 +345,14 @@ const data = {
     {
       image: "/images/stock-image-1.jpg",
     },
+    {
+      image: "/images/cat-for-header.jpg",
+    },
+  ],
+  headerImage: [
+    {
+      image: "/images/cat-for-header.png",
+    },
   ],
 };
 
