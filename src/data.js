@@ -337,7 +337,7 @@ const data = {
   ],
   slideImages: [
     {
-      image: "/images/stock-image.jpg",
+      image: "/images/stock-image-3.jpg",
     },
     {
       image: "/images/stock-image-2.jpg",

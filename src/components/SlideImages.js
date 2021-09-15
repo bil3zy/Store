@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {GrFormNext, GrFormPrevious} from "react-icons/gr";
 import data from "../data";
 
@@ -13,6 +13,10 @@ export default function SlideImages() {
   const prevSlide = () => {
     setCurrent(current === 0 ? data.slideImages.length - 1 : current - 1);
   };
+
+  setTimeout(() => {
+    nextSlide();
+  }, 4000);
 
   return (
     <div className="slider">
@@ -35,18 +39,14 @@ export default function SlideImages() {
         );
       })}
       <div className="slider-buttons">
-        <div>
-          <GrFormPrevious
-            className="prev-slider-button"
-            onClick={() => prevSlide()}
-          />
-        </div>
-        <div>
-          <GrFormNext
-            className="next-slider-button"
-            onClick={() => nextSlide()}
-          />
-        </div>
+        <GrFormPrevious
+          className="prev-slider-button"
+          onClick={() => prevSlide()}
+        />
+        <GrFormNext
+          className="next-slider-button"
+          onClick={() => nextSlide()}
+        />
       </div>
     </div>
   );

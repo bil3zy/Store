@@ -289,9 +289,15 @@ footer {
   width: 40px;
   height: 40px;
 }
+.next-slider-button:hover {
+  cursor: pointer;
+}
 .prev-slider-button {
   width: 40px;
   height: 40px;
+}
+.prev-slider-button:hover {
+  cursor: pointer;
 }
 .addtocart {
   width: 60%;
@@ -494,5 +500,6 @@ footer {
     transform: translateX(100%);
   }
 } */
-.slider-image-no-transition {
+.slider {
+  height: 300px;
 }
