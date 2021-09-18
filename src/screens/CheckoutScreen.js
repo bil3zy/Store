@@ -9,8 +9,10 @@ export default function CheckoutScreen(props) {
   const [phone, setPhone] = useInput("");
   const [firstName, setFirstName] = useInput("");
   const [lastName, setLastName] = useInput("");
-  const [address, setAddress] = useInput("");
+  const [area, setArea] = useInput("");
+  const [street, setStreet] = useInput("");
   const [building, setBuilding] = useInput("");
+  const [extra, setExtra] = useInput("");
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -65,10 +67,17 @@ export default function CheckoutScreen(props) {
               placeholder="Last Name"
             />
             <input
-              onChange={setAddress}
+              onChange={setArea}
               type="text"
-              value={address}
-              placeholder="Address, Area, Street"
+              value={area}
+              placeholder="Area"
+              required
+            />
+            <input
+              onChange={setStreet}
+              type="text"
+              value={street}
+              placeholder="Street"
               required
             />
             <input
@@ -77,6 +86,12 @@ export default function CheckoutScreen(props) {
               value={building}
               placeholder="Building, Apartment"
               required
+            />
+            <input
+              onChange={setExtra}
+              type="text"
+              value={extra}
+              placeholder="Extra Landmarks"
             />
             <button className="checkout-submit">Submit</button>
           </form>

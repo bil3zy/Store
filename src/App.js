@@ -8,6 +8,7 @@ import CatsScreen from "./screens/CatsScreen";
 import DogsScreen from "./screens/DogsScreen";
 import ProductDetailsScreen from "./screens/ProductDetailsScreen";
 import ScrollToTop from "./components/ScrollToTop";
+import Footer from "./components/Footer";
 
 function App() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 550);
@@ -65,7 +66,7 @@ function App() {
         <main>
           <ScrollToTop />
           <Route exact path="/">
-            <HomeScreen added={added} />
+            <HomeScreen added={added} changed={changed} />
           </Route>
           <Route path="/cart">
             <CartScreen
@@ -96,8 +97,8 @@ function App() {
             )}
           ></Route>
         </main>
-        <footer className="flex-column align-center">
-          <small>All rights reserved</small>
+        <footer>
+          <Footer />
         </footer>
       </div>
     </BrowserRouter>

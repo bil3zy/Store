@@ -18,12 +18,12 @@ export default function HeaderNav(props) {
           </Link>
         </div>
       </div>
-      <div className="cart-icon flex-row">
-        <p className="cart-number">{props.changed}</p>
-        <Link to="/cart">
+      <Link to="/cart">
+        <div className="cart-icon flex-row">
+          <p className="cart-number">{props.changed}</p>
           {props.changed > 0 ? <HiShoppingCart /> : <HiOutlineShoppingCart />}
-        </Link>
-      </div>
+        </div>
+      </Link>
     </nav>
   );
 }
