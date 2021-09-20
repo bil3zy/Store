@@ -1,4 +1,4 @@
-import {BrowserRouter, Link, Route} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
 import {useEffect, useState} from "react";
@@ -9,53 +9,50 @@ import DogsScreen from "./screens/DogsScreen";
 import ProductDetailsScreen from "./screens/ProductDetailsScreen";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
+import {addDoc, collection, onSnapshot} from "firebase/firestore";
+import db from "./firebase";
 
 function App() {
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 550);
   const [changed, setChanged] = useState(0);
-  const added = (obj) => {
-    obj.quantity++;
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  //   const added = async () => {
+  //   const docRef = doc(db, "products", );
+  //   const payload = {quantity: increment(1)};
+  //   setChanged((changed) => changed + 1);
+  //   await updateDoc(docRef, payload);
+  // };
+  const addCartItem = (product) => {
+    setCart([...cart, product]);
     setChanged((changed) => changed + 1);
   };
-  const updateViewport = () => {
-    setDesktop(window.innerWidth > 550);
-  };
-  const addedWithState = (i, setState) => {
-    i.quantity++;
-    setState((state) => state + 1);
-    setChanged((changed) => changed + 1);
-  };
-  const removed = (i, setState) => {
-    if (i.quantity > 1) {
-      i.quantity--;
-      setState((state) => state - 1);
+
+  const removeCartItem = (el) => {
+    let quantity = cart.filter((val) => val === el).length;
+    const id = cart.indexOf(el);
+    if (quantity > 1) {
+      cart.splice(id, 1);
       setChanged((changed) => changed - 1);
     }
   };
-  const removedWithoutState = (i, setState) => {
-    if (i.quantity > 1) {
-      i.quantity--;
-      setChanged((changed) => changed - 1);
-    }
+  const deleteFromCart = (el) => {
+    const id = cart.indexOf(el);
+    cart.splice(id, 1);
+    setChanged((changed) => changed - 1);
   };
 
-  const removeFromCart = (i, setState, state) => {
-    setState(state - i.quantity);
-    setChanged((changed) => changed - state);
-    console.log(i.quantity);
-    if (changed - state === 0) {
-      setChanged(0);
-    }
-    i.quantity = 0;
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateViewport);
-    return () => {
-      window.removeEventListener("resize", updateViewport);
-    };
+  cart.sort((a, b) => {
+    return a._id - b._id;
   });
 
+  const productsRef = db.collection("products");
+  console.log(productsRef);
+  // useEffect(() => {
+  //   onSnapshot(collection(db, "products"), (snapshot) => {
+  //     setProducts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})));
+  //   });
+  // }, []);
+  // console.log(products);
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -66,32 +63,33 @@ function App() {
         <main>
           <ScrollToTop />
           <Route exact path="/">
-            <HomeScreen added={added} changed={changed} />
+            <HomeScreen addCartItem={addCartItem} changed={changed} />
           </Route>
           <Route path="/cart">
             <CartScreen
-              addedWithState={addedWithState}
-              removed={removed}
+              addCartItem={addCartItem}
               changed={changed}
-              removeFromCart={removeFromCart}
+              removeCartItem={removeCartItem}
+              deleteFromCart={deleteFromCart}
+              cart={cart}
             />
           </Route>
           <Route path="/CheckoutScreen">
             <CheckoutScreen />
           </Route>
           <Route path="/cats">
-            <CatsScreen added={added} />
+            <CatsScreen addCartItem={addCartItem} changed={changed} />
           </Route>
           <Route path="/dogs">
-            <DogsScreen added={added} />
+            <DogsScreen addCartItem={addCartItem} changed={changed} />
           </Route>
           <Route
             path="/product-details/:id"
             render={(props) => (
               <ProductDetailsScreen
                 {...props}
-                added={added}
-                removedWithoutState={removedWithoutState}
+                addCartItem={addCartItem}
+                removeCartItem={removeCartItem}
                 changed={changed}
               />
             )}

@@ -1,10 +1,11 @@
 import React from "react";
 import CatsProducts from "../components/CatsProducts";
+import FloatingCartIcon from "../components/FloatingCartIcon";
 import data from "../data";
 
 export default function Cats(props) {
   const products = data.products;
-  const {added} = props;
+  const {addCartItem, changed} = props;
 
   const filterByCats = (product) => {
     return product.category === "Cats";
@@ -27,7 +28,12 @@ export default function Cats(props) {
           .filter(filterByCats)
           .filter(filterByFood)
           .map((product) => (
-            <CatsProducts key={product._id} product={product} added={added} />
+            <CatsProducts
+              key={product._id}
+              product={product}
+              addCartItem={addCartItem}
+              changed={changed}
+            />
           ))}
       </div>
       <div className="flex-column align-center">
@@ -38,8 +44,16 @@ export default function Cats(props) {
           .filter(filterByCats)
           .filter(filterByLitter)
           .map((product) => (
-            <CatsProducts key={product._id} product={product} added={added} />
+            <CatsProducts
+              key={product._id}
+              product={product}
+              addCartItem={addCartItem}
+              changed={changed}
+            />
           ))}
+      </div>
+      <div>
+        {changed > 0 ? <FloatingCartIcon changed={props.changed} /> : ""}
       </div>
     </div>
   );

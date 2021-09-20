@@ -1,10 +1,11 @@
 import React from "react";
 import DogsProducts from "../components/DogsProducts";
+import FloatingCartIcon from "../components/FloatingCartIcon";
 import data from "../data";
 
 export default function Dogs(props) {
   const products = data.products;
-  const {added} = props;
+  const {addCartItem, changed} = props;
 
   const filterByDogs = (product) => {
     return product.category === "Dogs";
@@ -24,8 +25,16 @@ export default function Dogs(props) {
           .filter(filterByDogs)
           .filter(filterByFood)
           .map((product) => (
-            <DogsProducts key={product._id} product={product} added={added} />
+            <DogsProducts
+              key={product._id}
+              product={product}
+              addCartItem={addCartItem}
+              changed={changed}
+            />
           ))}
+      </div>
+      <div>
+        {changed > 0 ? <FloatingCartIcon changed={props.changed} /> : ""}
       </div>
     </div>
   );

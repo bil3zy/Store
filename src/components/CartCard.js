@@ -1,15 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 
 function CartCard(props) {
-  const {product, added, removed, removeFromCart} = props; //from CartScreen.js
-  const [quantity, setQuantity] = useState(product.quantity);
-
+  const {product, addCartItem, removeCartItem, deleteFromCart, cart} = props; //from CartScreen.js
   const truncateString = (string) => {
     if (string.length <= 50) {
       return string;
     }
     return string.slice(0, 50) + "...";
   };
+  let quantity = cart.filter((val) => val === product).length;
 
   return (
     <div>
@@ -35,26 +34,20 @@ function CartCard(props) {
               {product.price}QR
             </p>
             <p className="card-price">
-              <strong>Total:</strong> {product.price * product.quantity}QR
+              <strong>Total:</strong> {product.price * quantity}QR
             </p>
           </div>
           <div className="flex-row buttons">
-            <button
-              className="minus"
-              onClick={() => removed(product, setQuantity)}
-            >
+            <button className="minus" onClick={() => removeCartItem(product)}>
               -
             </button>
             <p className="quantity">{quantity}</p>
-            <button
-              className="plus"
-              onClick={() => added(product, setQuantity)}
-            >
+            <button className="plus" onClick={() => addCartItem(product)}>
               +
             </button>
             <p
               className="remove-product-tag"
-              onClick={() => removeFromCart(product, setQuantity, quantity)}
+              onClick={() => deleteFromCart(product)}
             >
               Remove Product
             </p>

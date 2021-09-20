@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 export default function TopSellingProducts(props) {
-  const {product, added} = props;
+  const {product, addCartItem} = props;
 
   const truncateString = (string) => {
     if (string.length <= 50) {
@@ -27,7 +27,7 @@ export default function TopSellingProducts(props) {
       <button
         className="addtocart"
         onClick={() => {
-          added(product);
+          addCartItem(product);
         }}
       >
         Add to cart

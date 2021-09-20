@@ -1,24 +1,24 @@
 import React from "react";
 import CartCard from "../components/CartCard";
-import data from "../data.js";
 import OrderSummary from "../components/OrderSummary";
 import {Link} from "react-router-dom";
 import {MdNavigateNext} from "react-icons/md";
 
 function CartScreen(props) {
-  const {addedWithState, removed, changed, removeFromCart} = props; //from App.js
+  const {addCartItem, removeCartItem, deleteFromCart, changed, cart} = props; //from App.js
 
-  const renderCartedProduct = data.products
-    .filter((product) => product.quantity !== 0)
-    .map((product) => (
-      <CartCard
-        key={product._id}
-        product={product}
-        added={addedWithState}
-        removed={removed}
-        removeFromCart={removeFromCart}
-      />
-    ));
+  let uniqueProducts = [...new Set(cart)];
+  const renderCartedProduct = uniqueProducts.map((product) => (
+    <CartCard
+      key={product._id}
+      cart={cart}
+      product={product}
+      addCartItem={addCartItem}
+      removeCartItem={removeCartItem}
+      deleteFromCart={deleteFromCart}
+    />
+  ));
+
   return (
     <div>
       <div className="app-nav-bar">

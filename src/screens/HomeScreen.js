@@ -1,13 +1,15 @@
-import React from "react";
+// import {collection, onSnapshot} from "firebase/firestore";
+import React /*useEffect*/ from "react";
 import FloatingCartIcon from "../components/FloatingCartIcon";
 import MainHeader from "../components/MainHeader";
 import OnOfferProducts from "../components/OnOfferProducts";
-import SlideImages from "../components/SlideImages";
+// import SlideImages from "../components/SlideImages";
 import TopSellingProducts from "../components/TopSellingProducts";
 import data from "../data";
+// import db from "../firebase";
 
 function HomeScreen(props) {
-  const {added, changed} = props;
+  const {addCartItem, changed} = props;
   const products = data.products;
 
   const filterByTopSelling = (product) => {
@@ -17,6 +19,12 @@ function HomeScreen(props) {
   const filterByOffer = (product) => {
     return product.offer === true;
   };
+
+  // useEffect(() => {
+  //   onSnapshot(collection(db, "products"), (snapshot) => {
+  //     console.log(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})));
+  //   });
+  // });
 
   return (
     <div>
@@ -32,8 +40,13 @@ function HomeScreen(props) {
       </div>
       <div className="grid-row homescreen-products">
         {products.filter(filterByOffer).map((product) => (
-          <OnOfferProducts key={product._id} product={product} added={added} />
+          <OnOfferProducts
+            key={product._id}
+            product={product}
+            addCartItem={addCartItem}
+          />
         ))}
+        {}
       </div>
       <div className="flex-column homescreen-categories align-center">
         <h2 className="subcategory flex-row">TOP SELLERS</h2>
@@ -43,7 +56,7 @@ function HomeScreen(props) {
           <TopSellingProducts
             key={product._id}
             product={product}
-            added={added}
+            addCartItem={addCartItem}
           />
         ))}
       </div>

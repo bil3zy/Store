@@ -2,6 +2,7 @@ import React from "react";
 import data from "../data";
 
 export default function ProductDetailsScreen(props) {
+  const {addCartItem} = props;
   const product = data.products.find(
     (product) => product._id === props.match.params.id
   );
@@ -31,21 +32,12 @@ export default function ProductDetailsScreen(props) {
         </p>
         <div className="details-card-buttons flex-row">
           <button
-            className="minus"
+            className="addtocart"
             onClick={() => {
-              props.removedWithoutState(product);
+              addCartItem(product);
             }}
           >
-            -
-          </button>
-          {props.changed}
-          <button
-            className="plus"
-            onClick={() => {
-              props.added(product);
-            }}
-          >
-            +
+            Add to cart
           </button>
         </div>
       </div>
