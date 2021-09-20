@@ -9,8 +9,9 @@ import DogsScreen from "./screens/DogsScreen";
 import ProductDetailsScreen from "./screens/ProductDetailsScreen";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
-import {addDoc, collection, onSnapshot} from "firebase/firestore";
+import {addDoc, collection, doc, onSnapshot, setDoc} from "firebase/firestore";
 import db from "./firebase";
+import NewProductDashboard from "./screens/NewProductDashboard";
 
 function App() {
   const [changed, setChanged] = useState(0);
@@ -45,14 +46,12 @@ function App() {
     return a._id - b._id;
   });
 
-  const productsRef = db.collection("products");
-  console.log(productsRef);
-  // useEffect(() => {
-  //   onSnapshot(collection(db, "products"), (snapshot) => {
-  //     setProducts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})));
-  //   });
-  // }, []);
-  // console.log(products);
+  useEffect(() => {
+    onSnapshot(collection(db, "products"), (snapshot) => {
+      setProducts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    });
+  }, []);
+  console.log(products.map((product) => product.title));
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -63,11 +62,16 @@ function App() {
         <main>
           <ScrollToTop />
           <Route exact path="/">
-            <HomeScreen addCartItem={addCartItem} changed={changed} />
+            <HomeScreen
+              addCartItem={addCartItem}
+              changed={changed}
+              products={products}
+            />
           </Route>
           <Route path="/cart">
             <CartScreen
               addCartItem={addCartItem}
+              products={products}
               changed={changed}
               removeCartItem={removeCartItem}
               deleteFromCart={deleteFromCart}
@@ -78,10 +82,18 @@ function App() {
             <CheckoutScreen />
           </Route>
           <Route path="/cats">
-            <CatsScreen addCartItem={addCartItem} changed={changed} />
+            <CatsScreen
+              addCartItem={addCartItem}
+              changed={changed}
+              products={products}
+            />
           </Route>
           <Route path="/dogs">
-            <DogsScreen addCartItem={addCartItem} changed={changed} />
+            <DogsScreen
+              addCartItem={addCartItem}
+              changed={changed}
+              products={products}
+            />
           </Route>
           <Route
             path="/product-details/:id"
@@ -91,9 +103,13 @@ function App() {
                 addCartItem={addCartItem}
                 removeCartItem={removeCartItem}
                 changed={changed}
+                products={products}
               />
             )}
           ></Route>
+          <Route path="/newproduct">
+            <NewProductDashboard />
+          </Route>
         </main>
         <footer>
           <Footer />
