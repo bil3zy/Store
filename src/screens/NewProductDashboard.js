@@ -16,7 +16,7 @@ export default function NewProductDashboard() {
   const [topSelling, setTopSelling] = useInput("");
   const [weight, setWeight] = useInput("");
 
-  const newDocFirebase = async (e) => {
+  const newDocFirebase = async () => {
     const docRef = doc(db, "products", "7");
     const payload = {
       title: title,

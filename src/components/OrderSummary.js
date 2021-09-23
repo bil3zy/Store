@@ -3,19 +3,27 @@ import {Link, useLocation} from "react-router-dom";
 import data from "../data";
 
 export default function OrderSummary(props) {
-  let total = data.products
+  const {cart} = props;
+
+  // cart.map((product) => {
+  //   return console.log(product.image);
+  // });
+
+  // let total = cart.map((product) => {
+  //   return parseInt(product.price, 10);
+  // });
+
+  console.log(cart);
+
+  let total = cart
     .map((product) => {
-      if (product.quantity > 0) {
-        return parseInt(product.price, 10) * product.quantity;
-      } else return 0;
+      return parseInt(product.price, 10);
     })
     .reduce((acc, val) => acc + val, 15);
 
-  let subtotal = data.products
+  let subtotal = cart
     .map((product) => {
-      if (product.quantity > 0) {
-        return parseInt(product.price, 10) * product.quantity;
-      } else return 0;
+      return parseInt(product.price, 10);
     })
     .reduce((acc, val) => acc + val, 0);
 

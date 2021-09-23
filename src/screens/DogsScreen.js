@@ -1,11 +1,9 @@
 import React from "react";
 import DogsProducts from "../components/DogsProducts";
 import FloatingCartIcon from "../components/FloatingCartIcon";
-import data from "../data";
 
 export default function Dogs(props) {
-  const products = data.products;
-  const {addCartItem, changed} = props;
+  const {addCartItem, changed, products} = props;
 
   const filterByDogs = (product) => {
     return product.category === "Dogs";

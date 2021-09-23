@@ -6,16 +6,16 @@ import data from "../data";
 export default function Cats(props) {
   const {addCartItem, changed, products} = props;
 
-  // const filterByCats = (product) => {
-  //   return product.category === "Cats";
-  // };
+  const filterByCats = (product) => {
+    return product.category === "Cats";
+  };
 
-  // const filterByFood = (product) => {
-  //   return product.subcategory === "Food";
-  // };
-  // const filterByLitter = (product) => {
-  //   return product.subcategory === "Litter";
-  // };
+  const filterByFood = (product) => {
+    return product.subcategory === "Food";
+  };
+  const filterByLitter = (product) => {
+    return product.subcategory === "Litter";
+  };
 
   return (
     <div>
@@ -24,8 +24,8 @@ export default function Cats(props) {
       </div>
       <div className="grid-row cats-products">
         {products
-          // .filter(filterByCats)
-          // .filter(filterByFood)
+          .filter(filterByCats)
+          .filter(filterByFood)
           .map((product) => (
             <CatsProducts
               key={product.id}
@@ -38,10 +38,10 @@ export default function Cats(props) {
       <div className="flex-column align-center">
         <h2 className="subcategory flex-row">Cat Litter</h2>
       </div>
-      {/* <div className="grid-row">
+      <div className="grid-row">
         {products
-          // .filter(filterByCats)
-          // .filter(filterByLitter)
+          .filter(filterByCats)
+          .filter(filterByLitter)
           .map((product) => (
             <CatsProducts
               key={product.id}
@@ -50,7 +50,7 @@ export default function Cats(props) {
               changed={changed}
             />
           ))}
-      </div> */}
+      </div>
       <div>
         {changed > 0 ? <FloatingCartIcon changed={props.changed} /> : ""}
       </div>

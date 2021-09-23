@@ -10,19 +10,50 @@ import ProductDetailsScreen from "./screens/ProductDetailsScreen";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
 import {addDoc, collection, doc, onSnapshot, setDoc} from "firebase/firestore";
-import db from "./firebase";
+// import db from "./firebase";
 import NewProductDashboard from "./screens/NewProductDashboard";
+import RegisterForm from "./screens/RegisterForm";
+import db from "./firebase";
+import SignInForm from "./screens/SignInForm";
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import LogisticsDashboard from "./screens/LogisticsDashboard";
 
 function App() {
   const [changed, setChanged] = useState(0);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [user, setUser] = useState([]);
   //   const added = async () => {
   //   const docRef = doc(db, "products", );
   //   const payload = {quantity: increment(1)};
   //   setChanged((changed) => changed + 1);
   //   await updateDoc(docRef, payload);
   // };
+
+  const returnToInitialState = () => {
+    setCart([]);
+    setChanged(0);
+  };
+
+  const handleSignIn = (email, password, setError) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setUser(user);
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        setError(`Error: ${errorCode}`);
+      });
+  };
+  console.log(`cart ${cart}`);
+  console.log(`products ${products}`);
+
   const addCartItem = (product) => {
     setCart([...cart, product]);
     setChanged((changed) => changed + 1);
@@ -51,13 +82,16 @@ function App() {
       setProducts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})));
     });
   }, []);
-  console.log(products.map((product) => product.title));
+
+  // console.log(products.map((product) => product.category));
+
+  console.log(user);
   return (
     <BrowserRouter>
       <div className="grid-container">
         <header className="flex-row align-center space-between">
           {/* {isDesktop ? <HeaderNav changed={changed} /> : <FiMenu />} */}
-          <HeaderNav changed={changed} />
+          <HeaderNav changed={changed} user={user} />
         </header>
         <main>
           <ScrollToTop />
@@ -79,7 +113,11 @@ function App() {
             />
           </Route>
           <Route path="/CheckoutScreen">
-            <CheckoutScreen />
+            <CheckoutScreen
+              user={user}
+              cart={cart}
+              returnToInitialState={returnToInitialState}
+            />
           </Route>
           <Route path="/cats">
             <CatsScreen
@@ -107,8 +145,17 @@ function App() {
               />
             )}
           ></Route>
-          <Route path="/newproduct">
+          <Route path="/new-product">
             <NewProductDashboard />
+          </Route>
+          <Route path="/logistics-dashboard">
+            <LogisticsDashboard />
+          </Route>
+          <Route path="/register">
+            <RegisterForm handleSignIn={handleSignIn} user={user} />
+          </Route>
+          <Route path="/signin">
+            <SignInForm handleSignIn={handleSignIn} />
           </Route>
         </main>
         <footer>

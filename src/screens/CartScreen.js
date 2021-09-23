@@ -7,6 +7,10 @@ import {MdNavigateNext} from "react-icons/md";
 function CartScreen(props) {
   const {addCartItem, removeCartItem, deleteFromCart, changed, cart} = props; //from App.js
 
+  cart.sort((a, b) => {
+    return a.id - b.id;
+  });
+
   let uniqueProducts = [...new Set(cart)];
   const renderCartedProduct = uniqueProducts.map((product) => (
     <CartCard
@@ -39,7 +43,7 @@ function CartScreen(props) {
             <h3 className="cart-empty">Your Shopping cart is empty</h3>
           )}
         </div>
-        {changed > 0 ? <OrderSummary /> : ""}
+        {changed > 0 ? <OrderSummary cart={cart} /> : ""}
       </div>
     </div>
   );
