@@ -5,26 +5,17 @@ import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
 import {Link, Redirect} from "react-router-dom";
 import {doc, setDoc} from "firebase/firestore";
 import db from "../firebase";
+
 export default function RegisterForm(props) {
   const [email, setEmail] = useInput("");
   const [password, setPassword] = useInput("");
-  const [phone, setPhone] = useInput("");
   const [confirmedPassword, setConfirmedPassword] = useInput("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmedPassword, setShowConfirmedPassword] = useState(false);
   const [error, setError] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  const {user, handleSignIn} = props;
-
-  const newDocFirebase = async (uid) => {
-    const docRef = doc(db, "users", uid);
-    const payload = {
-      phone: phone,
-    };
-    await setDoc(docRef, payload);
-    console.log("added");
-  };
+  const {authenticationUser, handleSignIn} = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,13 +29,12 @@ export default function RegisterForm(props) {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          newDocFirebase(user.uid);
+          // console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode);
+          // console.log(errorCode);
           setError(`Error ${errorCode}`);
         })
         .then(
@@ -54,7 +44,6 @@ export default function RegisterForm(props) {
         );
     }
   };
-
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -67,8 +56,8 @@ export default function RegisterForm(props) {
     setRedirect(true);
   };
 
-  console.log(user.uid);
-  console.log(redirect);
+  // console.log(authenticationUser.uid);
+  // console.log(redirect);
   return (
     <div>
       <div className="flex-row space-evenly ">
@@ -83,13 +72,6 @@ export default function RegisterForm(props) {
               type="text"
               value={email}
               placeholder="Email"
-              required
-            />
-            <input
-              onChange={setPhone}
-              type="number"
-              value={phone}
-              placeholder="Phone Number"
               required
             />
             <input
@@ -119,24 +101,23 @@ export default function RegisterForm(props) {
               <AiFillEye onClick={() => handleShowConfirmedPassword()} />
             )}
             {error ? error : ""}
-            {user.reloadUserInfo ? (
+            {authenticationUser.reloadUserInfo ? (
               ""
             ) : (
               <button className="checkout-submit">Submit</button>
             )}
-            {user.reloadUserInfo ? (
+            {authenticationUser.reloadUserInfo ? (
               <button
                 className="checkout-submit"
                 onClick={() => handleProceedToAddress()}
               >
-                {redirect ? <Redirect to="/CheckoutScreen"></Redirect> : ""}
+                {redirect ? <Redirect to="/register-location"></Redirect> : ""}
                 Proceed to Address
               </button>
             ) : (
               ""
             )}
           </form>
-
           <h2>
             Already have an account? <Link to="/signin">Sign In</Link>
           </h2>

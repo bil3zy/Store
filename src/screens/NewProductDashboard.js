@@ -1,6 +1,6 @@
 import {doc, setDoc} from "firebase/firestore";
 import React from "react";
-import db from "../firebase";
+import {db} from "../firebase.js";
 import useInput from "../hooks/useInput";
 
 export default function NewProductDashboard() {
@@ -32,7 +32,7 @@ export default function NewProductDashboard() {
       topSelling: topSelling,
     };
     await setDoc(docRef, payload);
-    console.log("added");
+    // console.log("added");
   };
 
   const handleSubmit = (e) => {

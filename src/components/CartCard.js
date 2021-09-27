@@ -9,6 +9,8 @@ function CartCard(props) {
     return string.slice(0, 50) + "...";
   };
   let quantity = cart.filter((val) => val === product).length;
+  console.log(cart);
+  console.log(quantity);
 
   return (
     <div>
@@ -47,7 +49,7 @@ function CartCard(props) {
             </button>
             <p
               className="remove-product-tag"
-              onClick={() => deleteFromCart(product)}
+              onClick={() => deleteFromCart(product, quantity)}
             >
               Remove Product
             </p>

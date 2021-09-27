@@ -3,8 +3,8 @@ import {HiOutlineShoppingCart, HiShoppingCart} from "react-icons/hi";
 import {Link} from "react-router-dom";
 
 export default function HeaderNav(props) {
-  const {user} = props;
-  console.log(user.reloadUserInfo ? true : false);
+  const {authenticationUser} = props;
+  // console.log(authenticationUser.reloadUserInfo ? true : false);
   // console.log(user.reloadUserInfo.email);
   return (
     <nav className="nav-bar flex-row space-between align-center">
@@ -19,22 +19,24 @@ export default function HeaderNav(props) {
           <Link className="header-links" id="dogs" to="/dogs">
             <h3>Dogs</h3>
           </Link>
-          {user.reloadUserInfo ? (
+          {authenticationUser.reloadUserInfo ? (
             ""
           ) : (
             <Link className="header-links" to="/register">
               <h3>Register</h3>
             </Link>
           )}
-          {user.reloadUserInfo ? (
+          {authenticationUser.reloadUserInfo ? (
             ""
           ) : (
             <Link className="header-links" to="/signin">
               <h3>Sign in</h3>
             </Link>
           )}
-          {user.reloadUserInfo ? (
-            <div className="header-links">{user.reloadUserInfo?.email}</div>
+          {authenticationUser.reloadUserInfo ? (
+            <div className="header-links">
+              {authenticationUser.reloadUserInfo?.email}
+            </div>
           ) : (
             ""
           )}

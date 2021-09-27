@@ -1,20 +1,25 @@
 import React, {useState} from "react";
 import useInput from "../hooks/useInput";
-import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai";
+import {Redirect} from "react-router-dom";
+import {doc, getDoc} from "firebase/firestore";
+import db from "../firebase";
 
 export default function SignInForm(props) {
-  const {handleSignIn} = props;
+  const {handleSignIn, authenticationUser, setDatabaseUser} = props;
   const [email, setEmail] = useInput("");
   const [password, setPassword] = useInput("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSignIn(email, password, setError);
+    setTimeout(() => {
+      setRedirect(true);
+    }, 2000);
   };
-
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -48,7 +53,10 @@ export default function SignInForm(props) {
               <AiFillEye onClick={() => handleShowPassword()} />
             )}
             {error ? error : ""}
-            <button className="checkout-submit">Sign in</button>
+            <button className="checkout-submit">
+              {redirect ? <Redirect to="/"></Redirect> : ""}
+              Sign In
+            </button>
           </form>
         </div>
       </div>

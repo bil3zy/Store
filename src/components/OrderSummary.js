@@ -3,30 +3,9 @@ import {Link, useLocation} from "react-router-dom";
 import data from "../data";
 
 export default function OrderSummary(props) {
-  const {cart} = props;
+  const {total, subtotal} = props;
 
-  // cart.map((product) => {
-  //   return console.log(product.image);
-  // });
-
-  // let total = cart.map((product) => {
-  //   return parseInt(product.price, 10);
-  // });
-
-  console.log(cart);
-
-  let total = cart
-    .map((product) => {
-      return parseInt(product.price, 10);
-    })
-    .reduce((acc, val) => acc + val, 15);
-
-  let subtotal = cart
-    .map((product) => {
-      return parseInt(product.price, 10);
-    })
-    .reduce((acc, val) => acc + val, 0);
-
+  console.log(subtotal);
   return (
     <div className="flex-column summary">
       <h2>Order Summary</h2>

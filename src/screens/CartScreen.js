@@ -11,6 +11,18 @@ function CartScreen(props) {
     return a.id - b.id;
   });
 
+  let total = cart
+    .map((product) => {
+      return parseInt(product.price, 10);
+    })
+    .reduce((acc, val) => acc + val, 15);
+
+  let subtotal = cart
+    .map((product) => {
+      return parseInt(product.price, 10);
+    })
+    .reduce((acc, val) => acc + val, 0);
+
   let uniqueProducts = [...new Set(cart)];
   const renderCartedProduct = uniqueProducts.map((product) => (
     <CartCard
@@ -43,7 +55,11 @@ function CartScreen(props) {
             <h3 className="cart-empty">Your Shopping cart is empty</h3>
           )}
         </div>
-        {changed > 0 ? <OrderSummary cart={cart} /> : ""}
+        {changed > 0 ? (
+          <OrderSummary cart={cart} total={total} subtotal={subtotal} />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
