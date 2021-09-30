@@ -44,6 +44,8 @@ export default function CheckoutScreen(props) {
     "Pay by cash",
   ]);
 
+  const [newAddress, setNewAddress] = useState(false);
+
   // useEffect(() => {
   //   const products = [];
   //   cart.forEach((product) => {
@@ -94,22 +96,27 @@ export default function CheckoutScreen(props) {
     setShowPaymentDropDown(!showPaymentDropDown);
   };
 
-  // const newDocFirebase = async () => {
-  //   const docRef = doc(db, "users", authenticationUser.uid);
-  //   const payload = {
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     phone: phone,
-  //     area: area,
-  //     street: street,
-  //     building: building,
-  //     extra: extra,
-  //     deliveryTime: chosenDeliveryDropDownOption,
-  //     paymentType: chosenPaymentDropDownOption,
-  //     time: serverTimestamp(),
-  //   };
-  //   await setDoc(docRef, payload);
-  // };
+  const newDocFirebase = async () => {
+    await addDoc(collection(db, "orders"), {
+      databaseUser: {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        area: area,
+        street: street,
+        building: building,
+        extra: extra,
+      },
+      quantity: quantity,
+      total: total,
+      subtotal: subtotal,
+      deliveryTime: chosenDeliveryDropDownOption,
+      paymentType: chosenPaymentDropDownOption,
+      time: serverTimestamp(),
+    });
+  };
+  console.log(databaseUser);
+
   const newDocFirebaseOrder = async () => {
     await addDoc(collection(db, "orders"), {
       databaseUser: databaseUser,
@@ -146,15 +153,19 @@ export default function CheckoutScreen(props) {
   // console.log(cart);
   // console.log(databaseUser);
 
+  const handleAddressChange = () => {
+    setNewAddress(!newAddress);
+  };
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     // newDocFirebase(authenticationUser.uid);
-    newDocFirebaseOrder();
+    newAddress ? newDocFirebase() : newDocFirebaseOrder();
     setRedirect(true);
     returnToInitialState();
   };
 
-  console.log(databaseUser);
+  console.log(newAddress);
 
   return (
     <div>
@@ -171,7 +182,7 @@ export default function CheckoutScreen(props) {
       </div>
       <div className="flex-row space-evenly ">
         <div className="flex-column checkout-form align-center">
-          {Object.keys(databaseUser).length > 0 ? (
+          {Object.keys(databaseUser).length > 0 && !newAddress ? (
             <form
               className="flex-column checkout-form align-center"
               onSubmit={onSubmitHandler}
@@ -182,6 +193,9 @@ export default function CheckoutScreen(props) {
                 <p>street: {databaseUser.street}</p>
                 <p>building: {databaseUser.building}</p>
                 <p>area: {databaseUser.area}</p>
+                <button onClick={() => handleAddressChange()}>
+                  Change my address
+                </button>
               </div>
               <h2>Delivery Options</h2>
               <div className="drop-down-options">
@@ -239,6 +253,14 @@ export default function CheckoutScreen(props) {
               onSubmit={onSubmitHandler}
             >
               <h2>Shipping Address</h2>
+              {Object.keys(databaseUser).length > 0 ? (
+                <button onClick={() => handleAddressChange()}>
+                  Return to original address
+                </button>
+              ) : (
+                ""
+              )}
+
               <input
                 onChange={setFirstName}
                 type="text"
@@ -338,7 +360,7 @@ export default function CheckoutScreen(props) {
             </form>
           )}
         </div>
-        <OrderSummary total={total} subtotal={subtotal} />
+        <OrderSummary total={total} subtotal={subtotal} quantity={quantity} />
       </div>
     </div>
   );

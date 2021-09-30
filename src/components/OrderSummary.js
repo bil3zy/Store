@@ -3,12 +3,15 @@ import {Link, useLocation} from "react-router-dom";
 import data from "../data";
 
 export default function OrderSummary(props) {
-  const {total, subtotal} = props;
+  const {total, subtotal, quantity} = props;
 
   console.log(subtotal);
   return (
     <div className="flex-column summary">
       <h2>Order Summary</h2>
+      {Object.entries(quantity).flatMap((product) => {
+        return <p>{product}</p>;
+      })}
       <p>
         <strong>Subtotal:</strong> {subtotal} {subtotal > 0 ? "QR" : ""}
       </p>

@@ -11,6 +11,21 @@ function CartScreen(props) {
     return a.id - b.id;
   });
 
+  let products = [];
+  let quantity = {};
+  cart.forEach((product) => {
+    return products.push(product.title);
+  });
+  console.log(products);
+
+  for (const product of products) {
+    quantity[product + " x"] = quantity[product + " x"]
+      ? quantity[product + " x"] + 1
+      : 1;
+  }
+
+  console.log(quantity);
+
   let total = cart
     .map((product) => {
       return parseInt(product.price, 10);
@@ -56,7 +71,12 @@ function CartScreen(props) {
           )}
         </div>
         {changed > 0 ? (
-          <OrderSummary cart={cart} total={total} subtotal={subtotal} />
+          <OrderSummary
+            cart={cart}
+            quantity={quantity}
+            total={total}
+            subtotal={subtotal}
+          />
         ) : (
           ""
         )}

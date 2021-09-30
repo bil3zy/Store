@@ -60,7 +60,6 @@ export default function RegisterLocationForm(props) {
     extra: extra,
     deliveryTime: chosenDeliveryDropDownOption,
     paymentType: chosenPaymentDropDownOption,
-    cart: cart,
     time: serverTimestamp(),
   };
 

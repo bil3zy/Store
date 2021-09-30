@@ -15,7 +15,7 @@ import NewProductDashboard from "./screens/NewProductDashboard";
 import RegisterForm from "./screens/RegisterForm";
 import {db} from "./firebase.js";
 import SignInForm from "./screens/SignInForm";
-import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import LogisticsDashboard from "./screens/LogisticsDashboard";
 import RegisterLocationForm from "./screens/RegisterLocationForm";
 import {getStorage, ref} from "firebase/storage";
@@ -26,11 +26,14 @@ function App() {
   const [cart, setCart] = useState([]);
   const [authenticationUser, setAuthenticationUser] = useState([]);
   const [databaseUser, setDatabaseUser] = useState({});
+  const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState("");
+  const [admin, setAdmin] = useState(false);
 
-  const storage = getStorage();
-  const storageRef = ref(storage);
-  const imagesRef = ref(storage, "productImages");
-  console.log(imagesRef);
+  // const storage = getStorage();
+  // const storageRef = ref(storage);
+  // const imagesRef = ref(storage, "productImages");
+  // console.log(imagesRef);
   //   const added = async () => {
   //   const docRef = doc(db, "products", );
   //   const payload = {quantity: increment(1)};
@@ -38,12 +41,14 @@ function App() {
   //   await updateDoc(docRef, payload);
   // };
   // console.log(authenticationUser.uid);
+
   const returnToInitialState = () => {
     setCart([]);
     setChanged(0);
   };
+  console.log(getAuth());
 
-  const handleSignIn = (email, password, setError) => {
+  const handleSignIn = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -53,18 +58,33 @@ function App() {
         const docSnap = getDoc(doc(db, "users", user.uid));
         docSnap.then((doc) => {
           setDatabaseUser(doc.data());
-          console.log("fetched");
         });
+        setRedirect(true);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // console.log(errorCode);
-        setError(`Error: ${errorCode}`);
+        setRedirect(false);
+        setError(errorCode);
       });
   };
-  // console.log(`cart ${cart}`);
-  // console.log(`products ${products}`);
+
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        setAuthenticationUser([]);
+        setDatabaseUser({});
+        setCart([]);
+        setRedirect(false);
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("error");
+      });
+  };
+
   const addCartItem = (product) => {
     setCart([...cart, product]);
     setChanged((changed) => changed + 1);
@@ -105,34 +125,22 @@ function App() {
       // console.log("added");
     }
   };
-  console.log(databaseUser);
-  console.log(authenticationUser);
-
-  // console.log(Object.keys(databaseUser).length === undefined);
-  // console.log(Object.keys(databaseUser).length);
-  // console.log(
-  //   `authenticationUser: ${authenticationUser} condition: ${
-  //     Object.keys(authenticationUser).length > 0
-  //   }`
-  // );
 
   useEffect(() => {
     onSnapshot(collection(db, "products"), (snapshot) => {
       setProducts(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})));
     });
   }, []);
-  console.log();
 
-  // console.log(products.map((product) => product.category));
-
-  // console.log(authenticationUser);
   return (
     <BrowserRouter>
       <div className="grid-container">
         <header className="flex-row align-center space-between">
           {/* {isDesktop ? <HeaderNav changed={changed} /> : <FiMenu />} */}
           <HeaderNav
+            databaseUser={databaseUser}
             changed={changed}
+            handleSignOut={handleSignOut}
             authenticationUser={authenticationUser}
           />
         </header>
@@ -193,7 +201,13 @@ function App() {
             <NewProductDashboard />
           </Route>
           <Route path="/logistics-dashboard">
-            <LogisticsDashboard />
+            <LogisticsDashboard
+              authenticationUser={authenticationUser}
+              admin={admin}
+              handleSignIn={handleSignIn}
+              error={error}
+              redirect={redirect}
+            />
           </Route>
           <Route path="/register">
             <RegisterForm
@@ -212,6 +226,9 @@ function App() {
           <Route path="/signin">
             <SignInForm
               handleSignIn={handleSignIn}
+              error={error}
+              redirect={redirect}
+              setAuthenticationUser={setAuthenticationUser}
               setDatabaseUser={setDatabaseUser}
               authenticationUser={authenticationUser}
               fetchDatabaseUser={fetchDatabaseUser}
