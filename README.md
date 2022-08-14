@@ -1,4 +1,4 @@
-#Aleef Store
+# Aleef Store
 An online pet store
 
 Was a training project I did with pure react and redux and with firebase authentication & database and with pure CSS.
